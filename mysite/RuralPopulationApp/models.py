@@ -1,19 +1,17 @@
 from django.db import models
 
+# Country model would change to have foreign keys to Region and IncomeGroup
 class Country(models.Model):
     name = models.TextField()
     country_code = models.CharField(max_length=3)
-    income_group = models.CharField(
-        max_length=20,
-        choices=[
-            ('Low Income', 'Low Income'),
-            ('Lower Middle Income', 'Lower Middle Income'),
-            ('Upper Middle Income', 'Upper Middle Income'),
-            ('High Income', 'High Income'),
-        ]
-    )
-    years = models.IntegerField(choices=[(year, year) for year in range(2000, 2023)])
+    region = models.ForeignKey('Region', on_delete=models.SET_NULL, null=True)
+    income_group = models.ForeignKey('IncomeGroup', on_delete=models.SET_NULL, null=True)
     special_notes = models.TextField()
+
+class DataEntry(models.Model):
+    country = models.ForeignKey('Country', on_delete=models.CASCADE)
+    year = models.IntegerField(choices=[(year, year) for year in range(2000, 2023)])
+    value = models.DecimalField(max_digits=5, decimal_places=2)  # Adjust max_digits as needed
 
 class Region(models.Model):
     name = models.CharField(
