@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Income Groups</title>
-</head>
-<body>
+{% extends 'layout.html' %}
+
+{% block title %}
+    Income Group
+{% endblock %}
+
+{% block content %}
     <h1>List of Income Groups</h1>
     <ul>
-        {% for income_group in income_groups %}
+        {% for income_group in IncomeGroup %}
             <li>{{ income_group.name }}</li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}

@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countries</title>
-</head>
-<body>
+{% extends 'layout.html' %}
+
+{% block title %}
+    Countries
+{% endblock %}
+
+{% block content %}
     <h1>List of Countries</h1>
     <ul>
-        {% for country in countries %}
+        {% for country in Country %}
             <li>{{ country.name }} - {{ country.country_code }} (Income Group: {{ country.income_group }})</li>
         {% endfor %}
     </ul>
-</body>
-</html>
+    <ul>
+        <li><a href="{% url 'regions' %}">View Regions</a></li>
+        <li><a href="{% url 'income_groups' %}">View Income Groups</a></li>
+    </ul>
+{% endblock %}

@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regions</title>
-</head>
-<body>
+{% extends 'layout.html' %}
+
+{% block title %}
+    Regions
+{% endblock %}
+
+{% block content %}
     <h1>List of Regions</h1>
     <ul>
-        {% for region in regions %}
+        {% for region in Region %}
             <li>{{ region.name }}</li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
