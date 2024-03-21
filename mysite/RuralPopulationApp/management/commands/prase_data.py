@@ -1,5 +1,5 @@
 import pandas as pd
-from RuralPopulationApp.models import Country, Region, IncomeGroup, DataEntry
+from RuralPopulationApp.models import Country, Region, IncomeGroup, DataEntry, RegionCountries, IncomeCountries
 from django.core.management.base import BaseCommand
 import os
 
