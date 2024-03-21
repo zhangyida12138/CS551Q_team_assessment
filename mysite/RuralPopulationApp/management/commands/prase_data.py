@@ -55,5 +55,21 @@ class Command(BaseCommand):
                         year=year,
                         defaults={'value': value}  # Set the data entry's value
                     )
+        
+        for _, row in metadata_df.iterrows():
+            # Fetch the country instance based on the country code
+            country = Country.objects.get(country_code=row['Country Code'])
+            
+            # Fetch the region and income group instances for the current row
+            region = regions.get(row['Region'])
+            income_group = income_groups.get(row['IncomeGroup'])
+            
+            # Only proceed if the region and income group instances exist for the current country
+            if region and income_group:
+                # Create or update RegionCountries entry
+                RegionCountries.objects.update_or_create(country=country, region=region)
+                
+                # Create or update IncomeCountries entry
+                IncomeCountries.objects.update_or_create(country=country, income_group=income_group)
 
         print('Data import complete.')  # Indicate the completion of the data import process
