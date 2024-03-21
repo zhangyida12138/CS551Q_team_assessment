@@ -19,3 +19,5 @@ def income_groups(request):
 
 def regions(request):
     return render(request, 'RuralPopulationApp/regions.html')
+
+

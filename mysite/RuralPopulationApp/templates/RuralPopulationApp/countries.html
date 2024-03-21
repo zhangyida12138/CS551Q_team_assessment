@@ -8,8 +8,8 @@
     <h1>List of Countries</h1>
     <br>
     <ul>
-        {% for country in Country %}
-            <li>{{ country.name }} - {{ country.country_code }} (Income Group: {{ country.income_group }})</li>
+        {% for country in countries %}
+            <li>{{ country.name }} - {{ country.country_code }} |Income Group: {{ country.income_group }}| Special Notes: {{ country.special_notes }}</li>
         {% endfor %}
     </ul>
     <br>
