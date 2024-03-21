@@ -63,6 +63,7 @@ class RegionCountries(models.Model):
     # A foreign key link to the Region model. If the referenced Region is deleted,
     # the RegionCountries record will also be deleted (CASCADE).
     region = models.ForeignKey(Region, on_delete=models.CASCADE)
+    country= models.ForeignKey(Country,on_delete=models.CASCADE)
 
 # Similar to RegionCountries, the IncomeCountries model intends to link income groups with countries,
 # but it is missing a country field to complete the relationship.
@@ -70,3 +71,4 @@ class IncomeCountries(models.Model):
     # A foreign key link to the IncomeGroup model. If the referenced IncomeGroup is deleted,
     # the IncomeCountries record will also be deleted (CASCADE).
     income_group = models.ForeignKey(IncomeGroup, on_delete=models.CASCADE)
+    country= models.ForeignKey(Country,on_delete=models.CASCADE)
