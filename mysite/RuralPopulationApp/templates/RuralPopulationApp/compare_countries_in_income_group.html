@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Comparison of Countries in Income Group
+{% endblock %}
+
+{% block content %}
+    <h1>Comparison of Countries in Income Group</h1>
+
+    <!-- Form for inputting income group ID -->
+    <form method="get" action="{% url 'compare_countries_in_income_group' %}">
+        <label for="income_group_id">Income Group ID:</label>
+        <input type="text" name="income_group_id" id="income_group_id">
+        <br>
+        <button type="submit">Compare</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Region</th>
+                <th>Special Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for country in countries %}
+                <tr>
+                    <td>{{ country.name }}</td>
+                    <td>{{ country.region.name }}</td>
+                    <td>{{ country.special_notes }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

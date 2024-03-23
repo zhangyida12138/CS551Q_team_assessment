@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Comparison of Countries
+{% endblock %}
+
+{% block content %}
+    <h1>Comparison of Countries</h1>
+
+    <!-- Form for comparing countries -->
+    <form method="get" action="{% url 'compare_countries' %}">
+        <label for="country_code_1">Country Code 1:</label>
+        <input type="text" name="country_code_1" id="country_code_1">
+        <br>
+        <label for="country_code_2">Country Code 2:</label>
+        <input type="text" name="country_code_2" id="country_code_2">
+        <br>
+        <button type="submit">Compare</button>
+    </form>
+
+    <!-- Display comparison table if both countries are provided -->
+    {% if country_1 and country_2 %}
+    <table>
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Region</th>
+                <th>Income Group</th>
+                <th>Special Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ country_1.name }}</td>
+                <td>{{ country_1.region.name }}</td>
+                <td>{{ country_1.income_group.name }}</td>
+                <td>{{ country_1.special_notes }}</td>
+            </tr>
+            <tr>
+                <td>{{ country_2.name }}</td>
+                <td>{{ country_2.region.name }}</td>
+                <td>{{ country_2.income_group.name }}</td>
+                <td>{{ country_2.special_notes }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %}

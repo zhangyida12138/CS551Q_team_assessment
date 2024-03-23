@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Comparison of Countries in Region
+{% endblock %}
+
+{% block content %}
+    <h1>Comparison of Countries in Region</h1>
+
+    <!-- Form for inputting region ID -->
+    <form method="get" action="{% url 'compare_countries_in_region' %}">
+        <label for="region_id">Region ID:</label>
+        <input type="text" name="region_id" id="region_id">
+        <br>
+        <button type="submit">Compare</button>
+    </form>
+
+    <!-- Table to display comparison results -->
+    <table>
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Region</th>
+                <th>Income Group</th>
+                <th>Special Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for country in countries %}
+                <tr>
+                    <td>{{ country.name }}</td>
+                    <td>{{ country.region.name }}</td>
+                    <td>{{ country.income_group.name }}</td>
+                    <td>{{ country.special_notes }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

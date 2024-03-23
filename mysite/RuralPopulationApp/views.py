@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.db.models import Prefetch
+from urllib.parse import quote
+from django.core.exceptions import FieldError
 from .models import Country,DataEntry,Region,IncomeGroup,RegionCountries,IncomeCountries
 
 # Create your views here.
@@ -13,15 +17,58 @@ def countries(request):
     # Merge the three dictionaries into one
     context = {
         'countries': countries,
-        # 'regions': regions,
-        # "income_groups": income_groups
+        'regions': regions,
+        "income_groups": income_groups
     }
     return render(request, 'RuralPopulationApp/countries.html', context)
+
+
+def compare_countries(request):
+    country_1 = None
+    country_2 = None
+
+    # Check if the request method is GET
+    if request.method == 'GET':
+        # Retrieve the country codes from the query parameters
+        country_code_1 = request.GET.get('country_code_1')
+        country_code_2 = request.GET.get('country_code_2')
+        
+        # If both country codes are provided, fetch the corresponding country objects
+        if country_code_1 and country_code_2:
+            country_1 = get_object_or_404(Country, country_code=country_code_1)
+            country_2 = get_object_or_404(Country, country_code=country_code_2)
+
+    # Render the form and comparison data
+    return render(request, 'RuralPopulationApp/compare_countries.html', {'country_1': country_1, 'country_2': country_2})
+
+def compare_countries_in_region(request):
+    region = None
+    countries = None
+
+    if request.method == 'GET':
+        region_id = request.GET.get('region_id')
+
+        if region_id:
+            region = get_object_or_404(Region, id=region_id)
+            country_ids = RegionCountries.objects.filter(region=region).values_list('country_id', flat=True)
+            countries = Country.objects.filter(id__in=country_ids)
     
-def income_groups(request):
-    return render(request, 'RuralPopulationApp/income_groups.html')
+    return render(request, 'RuralPopulationApp/compare_countries_in_region.html', {'region': region, 'countries': countries})
 
-def regions(request):
-    return render(request, 'RuralPopulationApp/regions.html')
+def compare_countries_in_income_group(request):
+    income_group_id = None
+    income_group = None
+    countries = None
 
+    if request.method == 'GET':
+        income_group_id = request.GET.get('income_group_id')
 
+        if income_group_id:
+            try:
+                income_group = get_object_or_404(IncomeGroup, id=income_group_id)
+                country_ids = IncomeCountries.objects.filter(income_group=income_group).values_list('country_id', flat=True)
+                countries = Country.objects.filter(id__in=country_ids)
+            except IncomeGroup.DoesNotExist:
+                raise Http404("Income Group does not exist")
+
+    return render(request, 'RuralPopulationApp/compare_countries_in_income_group.html', {'income_group': income_group, 'countries': countries})
