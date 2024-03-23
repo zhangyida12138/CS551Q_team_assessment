@@ -18,6 +18,7 @@
     <table>
         <thead>
             <tr>
+                <th>Income Group</th>
                 <th>Country</th>
                 <th>Region</th>
                 <th>Special Notes</th>
@@ -26,6 +27,7 @@
         <tbody>
             {% for country in countries %}
                 <tr>
+                    <td>{{ country.income_group.name }}</td>
                     <td>{{ country.name }}</td>
                     <td>{{ country.region.name }}</td>
                     <td>{{ country.special_notes }}</td>
