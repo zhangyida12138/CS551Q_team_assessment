@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'index.html' %}
 
 {% block title %}
     Countries
@@ -7,7 +7,18 @@
 {% block content %}
     <h1>List of Countries with yearly Rural population</h1>
     <br>
-    <ul>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+    <tr>
+        <th >Country Code</th>
+        <th >Country Name</th>
+        <th >Income Group</th>
+        <th >Region</th>
+        <th >Special Notes</th>
+        <th >operate</th>
+    </tr>
+  </thead>
+        <tbody>
         {% for country in countries %}
             <li>{{ country.name }} - {{ country.country_code }} |Income Group: {{ country.income_group.name }}|Region: {{country.region.name}} </li>
             <li>Special Notes: {{ country.special_notes }}</li>
@@ -19,7 +30,28 @@
                     <li>No data entries found for this country.</li>
                 {% endfor %}
             </ul>
+        <tr>
+            <td>{{ country.country_code }}</td>
+            <td>{{ country.name }}</td>
+            {% if country.income_group.name == 'nan' %}
+                <td>None</td>
+            {% else %}
+                <td>{{ country.region.name}}</td>
+            {% endif %}
+            {% if country.income_group.name == 'nan' %}
+                <td>None</td>
+            {% else %}
+                <td>{{country.region.name}}</td>
+            {% endif %}
+            {% if country.special_notes == 'nan' %}
+                <td>None</td>
+            {% else %}
+                <td>{{ country.special_notes }}</td>
+            {% endif %}
+            <td><button type="button" class="btn btn-outline-info">details</button></td>
+        </tr>
         {% endfor %}
-    </ul>
+  </tbody>
+    </table>
       
 {% endblock %}
