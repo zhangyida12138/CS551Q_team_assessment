@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>My Django Project</title>
+    <!-- import Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+        .sidebar {
+            height: 100vh;
+            width: 200px;
+            position: fixed;
+            padding-top: 20px;
+            background-color: #f8f9fa;
+        }
+        .title{
+           text-align: center;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+        }
+        .main-content {
+            padding-top: 80px;
+        }
+    </style>
+</head>
+<body>
+<!-- Head navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <p class="title">National Rural Population Survey System</p>
+    </nav>
+
+<!-- Sidebar -->
+    <div class="sidebar">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="{% url 'countries' %}">View Countries</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link "href="{% url 'compare_countries' %}">Compare Countries</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'compare_countries_in_region' %}">Compare Countries in Region</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link "  href="{% url 'compare_countries_in_income_group' %}">Compare Countries in Income Group</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link "  href="/about">About</a>
+            </li>
+        </ul>
+    </div>
+  <!-- main content -->
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 main-content">
+                {% block content %}{% endblock %}
+            </main>
+</body>
+</html>
+
+
