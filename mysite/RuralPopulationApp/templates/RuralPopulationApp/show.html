@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+{% block title %}
+    Countries
+{% endblock %}
+
+{% block content %}
+    <h1>List of Countries with yearly Rural population</h1>
+    {% if country_1 %}
+        <div>
+            <h2>{{ country_1.name }} - {{ country_1.country_code }}</h2>
+            <p>Income Group: {{ country_1.income_group.name }}</p>
+            <p>Region: {{country_1.region.name}}</p>
+            <p>Special Notes: {{ country_1.special_notes }}</p>
+        </div>
+        <h3>Rural population (% of total population) per year:</h3>
+        
+        <table class="data-table">
+            <tr>
+                <th>Year</th>
+                {% for data_entry in country_1.dataentry_set.all %}
+                    <td>{{ data_entry.year }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Population(%)</th>
+                {% for data_entry in country_1.dataentry_set.all %}
+                    <td>{{ data_entry.value }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+
+    {% endif %}
+    
+    <div id="container"></div>
+
+    <script>
+ 
+        var chart = new ej.charts.Chart({
+                    tooltip: {enable: true},
+            //Initializing Primary X Axis
+            primaryXAxis: {
+                title: 'Year',
+                interval: 1
+            },
+            //Initializing Primary Y Axis
+             primaryYAxis: {
+                interval: 5,
+                title: 'Rural Population (% of Total Population)'
+            },
+ 
+            //Initializing Chart Series
+            series: [
+                {
+                    type: 'Line',
+                    width: 4,
+
+                    dataSource: [
+                    {% for data_entry in country_1.dataentry_set.all %}
+                        { country: {{ data_entry.year }}, medal: {{ data_entry.value }} },
+                    {% endfor %}
+                    ],
+                    xName: 'country',
+                    yName: 'medal',
+                }
+            ],
+        });
+        chart.appendTo('#container');
+    </script>
+
+{% endblock %}
