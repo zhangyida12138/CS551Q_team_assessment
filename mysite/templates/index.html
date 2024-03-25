@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js" type="text/javascript"></script>
     <script src="https://cdn.syncfusion.com/ej2/syncfusion-helper.js" type ="text/javascript"></script>
+
     <style>
         body {
             overflow-x: hidden;
@@ -45,7 +46,7 @@
 <body>
 <!-- Head navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <p class="title">National Rural Population Survey System</p>
+        <p class="title">Global Rural Population Survey System</p>
     </nav>
 
 <!-- Sidebar -->
@@ -58,24 +59,23 @@
             <a class="nav-link active" href="{% url 'countries' %}">View Countries</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link "href="{% url 'compare_countries' %}">Compare Countries</a>
+                <a class="nav-link "href="{% url 'compare_countries' %}">Compare Countries Rural Population</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'compare_countries_in_region' %}">Compare Countries in Region</a>
+                <a class="nav-link" href="{% url 'compare_countries_in_region' %}">Compare Countries in Regions</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link "  href="{% url 'compare_countries_in_income_group' %}">Compare Countries in Income Group</a>
+                <a class="nav-link "  href="{% url 'compare_countries_in_income_group' %}">Compare Countries in Income Groups</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link "  href="/about">About</a>
             </li>
         </ul>
     </div>
-  <!-- main content -->
+  <-- main content -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 main-content">
                 {% block content %}{% endblock %}
             </main>
 </body>
 </html>
-
 
