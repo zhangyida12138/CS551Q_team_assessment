@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    Countries
+{% endblock %}
+
+{% block content %}
+    <h1>List of Countries with yearly Rural population</h1>
+    <br>
+    <ul>
+        {% for country in countries %}
+            <li>{{ country.name }} - {{ country.country_code }} |Income Group: {{ country.income_group.name }}|Region: {{country.region.name}} </li>
+            <li>Special Notes: {{ country.special_notes }}</li>
+            <h3>Rural population (% of total population) per year:</h3>
+            <ul>
+                {% for data_entry in country.dataentry_set.all %}
+                    <li>Year: {{ data_entry.year }}, Population(%): {{ data_entry.value }}</li>
+                {% empty %}
+                    <li>No data entries found for this country.</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+{% endblock %}

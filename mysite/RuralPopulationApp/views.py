@@ -72,3 +72,23 @@ def compare_countries_in_income_group(request):
                 raise Http404("Income Group does not exist")
 
     return render(request, 'RuralPopulationApp/compare_countries_in_income_group.html', {'income_group': income_group, 'countries': countries})
+
+def show(request, id):
+    # Prefetch the DataEntry objects for each country to minimize database hits
+    dataentry_prefetch = Prefetch('dataentry_set', queryset=DataEntry.objects.all())
+    if request.method == 'GET':
+        country_id = request.GET.get('country_code')
+
+        if country_id:
+            country_1 = get_object_or_404(Country, country_code=country_id)
+
+    countries = Country.objects.select_related('region', 'income_group').all()
+    regions=Region.objects.all()
+    income_groups=IncomeGroup.objects.all()
+    # Merge the three dictionaries into one
+    context = {
+        'countries': countries,
+        'regions': regions,
+        "income_groups": income_groups
+    }
+    return render(request, 'RuralPopulationApp/show.html', {'country_code': country_code})
