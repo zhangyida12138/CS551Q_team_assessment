@@ -24,6 +24,8 @@ def countries(request):
 
 
 def compare_countries(request):
+    countries = Country.objects.all()
+ 
     country_1 = None
     country_2 = None
 
@@ -38,8 +40,15 @@ def compare_countries(request):
             country_1 = get_object_or_404(Country, country_code=country_code_1)
             country_2 = get_object_or_404(Country, country_code=country_code_2)
 
+
+    context = {
+        'countries': countries,
+        'country_1': country_1,
+        'country_2': country_2,
+    }
+
     # Render the form and comparison data
-    return render(request, 'RuralPopulationApp/compare_countries.html', {'country_1': country_1, 'country_2': country_2})
+    return render(request, 'RuralPopulationApp/compare_countries.html' ,context)
 
 def compare_countries_in_region(request):
     region = None

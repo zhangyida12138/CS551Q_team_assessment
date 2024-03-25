@@ -10,13 +10,24 @@
     <!-- Form for comparing countries -->
     <form method="get" action="{% url 'compare_countries' %}">
         <label for="country_code_1">Country Code 1:</label>
-        <input type="text" name="country_code_1" id="country_code_1">
+        <select name="country_code_1" id="country_code_1">
+            <option value="">Select a Country</option> <!-- Default null value option -->
+                {% for country in countries %}
+                    <option value="{{ country.country_code }}">{{ country.name }} ({{ country.country_code }})</option>
+                {% endfor %}
+        </select>
         <br>
         <label for="country_code_2">Country Code 2:</label>
-        <input type="text" name="country_code_2" id="country_code_2">
+        <select name="country_code_2" id="country_code_2">
+            <option value="">Select a Country</option> <!-- Default null value option -->
+                {% for country in countries %}
+                    <option value="{{ country.country_code }}">{{ country.name }} ({{ country.country_code }})</option>
+                {% endfor %}
+        </select>
         <br>
         <button type="submit">Compare</button>
     </form>
+
 
     <!-- Display comparison table if both countries are provided -->
     {% if country_1 and country_2 %}
@@ -51,31 +62,43 @@
     <script>
  
         var chart = new ej.charts.Chart({
-                    tooltip: {enable: true},
-            //Initializing Primary X Axis
+            tooltip: {enable: true},
+            // Initializing Primary X Axis
             primaryXAxis: {
                 title: 'Year',
                 interval: 1
             },
-            //Initializing Primary Y Axis
-             primaryYAxis: {
+            // Initializing Primary Y Axis
+            primaryYAxis: {
                 interval: 5,
                 title: 'Rural Population (% of Total Population)'
             },
  
-            //Initializing Chart Series
+            // Initializing Chart Series
             series: [
                 {
+                    name: '{{ country_1.name }}',
                     type: 'Line',
-                    width: 4,
-
+                    width: 2,
                     dataSource: [
-                    {% for data_entry in country_1.dataentry_set.all %}
-                        { country: {{ data_entry.year }}, medal: {{ data_entry.value }} },
-                    {% endfor %}
+                        {% for data_entry in country_1.dataentry_set.all %}
+                        { year: {{ data_entry.year }}, population: {{ data_entry.value }} },
+                        {% endfor %}
                     ],
-                    xName: 'country',
-                    yName: 'medal',
+                    xName: 'year',
+                    yName: 'population',
+                },
+                {
+                    name: '{{ country_2.name }}',
+                    type: 'Line',
+                    width: 2,
+                    dataSource: [
+                        {% for data_entry in country_2.dataentry_set.all %}
+                        { year: {{ data_entry.year }}, population: {{ data_entry.value }} },
+                        {% endfor %}
+                    ],
+                    xName: 'year',
+                    yName: 'population',
                 }
             ],
         });
