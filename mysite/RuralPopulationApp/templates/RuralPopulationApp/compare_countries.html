@@ -45,4 +45,43 @@
         </tbody>
     </table>
     {% endif %}
+    
+    <div id="container"></div>
+
+    <script>
+ 
+        var chart = new ej.charts.Chart({
+                    tooltip: {enable: true},
+            //Initializing Primary X Axis
+            primaryXAxis: {
+                title: 'Year',
+                interval: 1
+            },
+            //Initializing Primary Y Axis
+             primaryYAxis: {
+                interval: 5,
+                title: 'Rural Population (% of Total Population)'
+            },
+ 
+            //Initializing Chart Series
+            series: [
+                {
+                    type: 'Line',
+                    width: 4,
+
+                    dataSource: [
+                    {% for data_entry in country_1.dataentry_set.all %}
+                        { country: {{ data_entry.year }}, medal: {{ data_entry.value }} },
+                    {% endfor %}
+                    ],
+                    xName: 'country',
+                    yName: 'medal',
+                }
+            ],
+        });
+        chart.appendTo('#container');
+    </script>
+
+
+
 {% endblock %}
