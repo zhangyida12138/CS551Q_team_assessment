@@ -38,7 +38,8 @@
             {% else %}
                 <td>{{ country.special_notes }}</td>
             {% endif %}
-            <td><button> <a class="nav-link "  href="{% url 'show' country_code=country.code %}" type="button" class="btn btn-outline-info">details </a></button></td>
+
+            <td><button> <a class="nav-link " href = "show/?country_code_1={{country.country_code}}" type="button" class="btn btn-outline-info">details </a></button></td>
         </tr>
         {% endfor %}
   </tbody>

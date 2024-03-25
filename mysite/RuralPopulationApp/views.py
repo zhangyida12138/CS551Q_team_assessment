@@ -73,22 +73,17 @@ def compare_countries_in_income_group(request):
 
     return render(request, 'RuralPopulationApp/compare_countries_in_income_group.html', {'income_group': income_group, 'countries': countries})
 
-def show(request, id):
-    # Prefetch the DataEntry objects for each country to minimize database hits
-    dataentry_prefetch = Prefetch('dataentry_set', queryset=DataEntry.objects.all())
+def show(request):
+    country_1 = None
+
+    # Check if the request method is GET
     if request.method == 'GET':
-        country_id = request.GET.get('country_code')
+        # Retrieve the country codes from the query parameters
+        country_code_1 = request.GET.get('country_code_1')
+        
+        # If both country codes are provided, fetch the corresponding country objects
+        if country_code_1:
+            country_1 = get_object_or_404(Country, country_code=country_code_1)
 
-        if country_id:
-            country_1 = get_object_or_404(Country, country_code=country_id)
-
-    countries = Country.objects.select_related('region', 'income_group').all()
-    regions=Region.objects.all()
-    income_groups=IncomeGroup.objects.all()
-    # Merge the three dictionaries into one
-    context = {
-        'countries': countries,
-        'regions': regions,
-        "income_groups": income_groups
-    }
-    return render(request, 'RuralPopulationApp/show.html', {'country_code': country_code})
+    # Render the form and comparison data
+    return render(request, 'RuralPopulationApp/show.html', {'country_1': country_1})
