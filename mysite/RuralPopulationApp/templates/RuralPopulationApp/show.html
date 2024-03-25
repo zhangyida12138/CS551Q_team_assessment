@@ -5,22 +5,31 @@
 
 {% block content %}
     <h1>List of Countries with yearly Rural population</h1>
-    <br>
-    <ul>
-        {% if country_1 %}
-            <li>{{ country_1.name }} - {{ country_1.country_code }}</li>
-            <li>Income Group: {{ country_1.income_group.name }}</li>
-            <li>Region: {{country_1.region.name}}</li>
-            <li>Special Notes: {{ country_1.special_notes }}</li>
-            <h3>Rural population (% of total population) per year:</h3>
-            <ul>
+    {% if country_1 %}
+        <div>
+            <h2>{{ country_1.name }} - {{ country_1.country_code }}</h2>
+            <p>Income Group: {{ country_1.income_group.name }}</p>
+            <p>Region: {{country_1.region.name}}</p>
+            <p>Special Notes: {{ country_1.special_notes }}</p>
+        </div>
+        <h3>Rural population (% of total population) per year:</h3>
+        
+        <table class="data-table">
+            <tr>
+                <th>Year</th>
                 {% for data_entry in country_1.dataentry_set.all %}
-                    <li>Year: {{ data_entry.year }}, Population(%): {{ data_entry.value }}</li>
-                {% empty %}
-                    <li>No data entries found for this country.</li>
+                    <td>{{ data_entry.year }}</td>
                 {% endfor %}
-            </ul>
-        {% endif %}
+            </tr>
+            <tr>
+                <th>Population(%)</th>
+                {% for data_entry in country_1.dataentry_set.all %}
+                    <td>{{ data_entry.value }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+
+    {% endif %}
     
     <div id="container"></div>
 
@@ -58,6 +67,4 @@
         chart.appendTo('#container');
     </script>
 
-
 {% endblock %}
-
