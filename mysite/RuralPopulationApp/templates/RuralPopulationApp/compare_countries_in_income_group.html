@@ -30,10 +30,22 @@
         <tbody>
             {% for country in countries %}
                 <tr>
-                    <td>{{ country.income_group.name }}</td>
-                    <td>{{ country.name }}</td>
-                    <td>{{ country.region.name }}</td>
-                    <td>{{ country.special_notes }}</td>
+                    {% if country.income_group.name == 'nan' %}
+                        <td>None</td>
+                    {% else %}
+                        <td>{{ country.income_group.name}}</td>
+                    {% endif %}
+                        <td>{{ country.name }}</td>
+                    {% if country.income_group.name == 'nan' %}
+                        <td>None</td>
+                    {% else %}
+                        <td>{{country.region.name}}</td>
+                    {% endif %}
+                    {% if country.special_notes == 'nan' %}
+                        <td>None</td>
+                    {% else %}
+                        <td>{{ country.special_notes }}</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>
