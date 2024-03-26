@@ -1,11 +1,11 @@
-from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.db.models import Prefetch
 from urllib.parse import quote
 from django.core.exceptions import FieldError
 from .models import Country,DataEntry,Region,IncomeGroup,RegionCountries,IncomeCountries
-
+from django.shortcuts import render, get_object_or_404
+ 
 # Create your views here.
 def countries(request):
     # Prefetch the DataEntry objects for each country to minimize database hits
