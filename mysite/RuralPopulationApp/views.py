@@ -53,36 +53,45 @@ def compare_countries(request):
 def compare_countries_in_region(request):
     region = None
     countries = None
+    error_message = None
 
     if request.method == 'GET':
         region_id = request.GET.get('region_id')
-        try:
-            if region_id:
-                region = get_object_or_404(Region, id=region_id)
-                country_ids = RegionCountries.objects.filter(region=region).values_list('country_id', flat=True)
-                countries = Country.objects.filter(id__in=country_ids)
-        except Exception as e :
-            print(e)
+        if region_id:
+            if not region_id.isdigit():
+                error_message = "Please enter a number!"
+            else:
+                try:
+                    region = get_object_or_404(Region, id=region_id)
+                    country_ids = RegionCountries.objects.filter(region=region).values_list('country_id', flat=True)
+                    countries = Country.objects.filter(id__in=country_ids)
+                except Exception as e:
+                    print(e)
+                    error_message ='No Region matches the given query.'
     
-    return render(request, 'RuralPopulationApp/compare_countries_in_region.html', {'region': region, 'countries': countries})
+    return render(request, 'RuralPopulationApp/compare_countries_in_region.html', {'region': region, 'countries': countries,'error_message':error_message})
 
 def compare_countries_in_income_group(request):
     income_group_id = None
     income_group = None
     countries = None
+    error_message = None
 
     if request.method == 'GET':
         income_group_id = request.GET.get('income_group_id')
 
         if income_group_id:
-            try:
-                income_group = get_object_or_404(IncomeGroup, id=income_group_id)
-                country_ids = IncomeCountries.objects.filter(income_group=income_group).values_list('country_id', flat=True)
-                countries = Country.objects.filter(id__in=country_ids)
-            except Exception as e :
-                print(e)
+            if not income_group_id.isdigit():
+                error_message='Please enter a number!'
+            else:
+                try:
+                    income_group = get_object_or_404(IncomeGroup, id=income_group_id)
+                    country_ids = IncomeCountries.objects.filter(income_group=income_group).values_list('country_id', flat=True)
+                    countries = Country.objects.filter(id__in=country_ids)
+                except Exception as e :
+                    error_message='No IncomeGroup matches the given query.'
 
-    return render(request, 'RuralPopulationApp/compare_countries_in_income_group.html', {'income_group': income_group, 'countries': countries})
+    return render(request, 'RuralPopulationApp/compare_countries_in_income_group.html', {'income_group': income_group, 'countries': countries,'error_message':error_message})
 
 def show(request):
     country_1 = None

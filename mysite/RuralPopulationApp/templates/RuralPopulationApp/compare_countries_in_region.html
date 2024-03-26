@@ -6,7 +6,9 @@
 
 {% block content %}
     <h1>Comparison of Countries in Region</h1>
-
+    {% if error_message %}
+        <div style='color: red;'>{{error_message}}</div>
+    {% endif %}
     <!-- Form for inputting region ID -->
     <form method="get" action="{% url 'compare_countries_in_region' %}">
         <label for="region_id">Region ID:</label>

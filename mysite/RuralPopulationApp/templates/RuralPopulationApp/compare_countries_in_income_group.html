@@ -6,7 +6,10 @@
 
 {% block content %}
     <h1>Comparison of Countries in Income Group</h1>
-
+    {% if error_message %}
+        <div style='color: red;'>{{error_message}}</div>
+    {% endif %}
+    
     <!-- Form for inputting income group ID -->
     <form method="get" action="{% url 'compare_countries_in_income_group' %}">
         <label for="income_group_id">Income Group ID:</label>
