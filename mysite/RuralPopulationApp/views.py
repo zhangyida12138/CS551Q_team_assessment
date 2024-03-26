@@ -56,11 +56,13 @@ def compare_countries_in_region(request):
 
     if request.method == 'GET':
         region_id = request.GET.get('region_id')
-
-        if region_id:
-            region = get_object_or_404(Region, id=region_id)
-            country_ids = RegionCountries.objects.filter(region=region).values_list('country_id', flat=True)
-            countries = Country.objects.filter(id__in=country_ids)
+        try:
+            if region_id:
+                region = get_object_or_404(Region, id=region_id)
+                country_ids = RegionCountries.objects.filter(region=region).values_list('country_id', flat=True)
+                countries = Country.objects.filter(id__in=country_ids)
+        except Exception as e :
+            print(e)
     
     return render(request, 'RuralPopulationApp/compare_countries_in_region.html', {'region': region, 'countries': countries})
 
@@ -77,8 +79,8 @@ def compare_countries_in_income_group(request):
                 income_group = get_object_or_404(IncomeGroup, id=income_group_id)
                 country_ids = IncomeCountries.objects.filter(income_group=income_group).values_list('country_id', flat=True)
                 countries = Country.objects.filter(id__in=country_ids)
-            except IncomeGroup.DoesNotExist:
-                raise Http404("Income Group does not exist")
+            except Exception as e :
+                print(e)
 
     return render(request, 'RuralPopulationApp/compare_countries_in_income_group.html', {'income_group': income_group, 'countries': countries})
 
