@@ -4,16 +4,52 @@
 {% endblock %}
 
 {% block content %}
-    <h1>List of Countries with yearly Rural population</h1>
-    {% if country_1 %}
-        <div>
-            <h2>{{ country_1.name }} - {{ country_1.country_code }}</h2>
-            <p>Income Group: {{ country_1.income_group.name }}</p>
-            <p>Region: {{country_1.region.name}}</p>
-            <p>Special Notes: {{ country_1.special_notes }}</p>
+    <h1>{{ country_1.name }} - {{ country_1.country_code }}</h1>
+    <div class="card" style="margin-top: 24px">
+        <h5 class="card-header">Basic Information</h5>
+        <div class="card-body">
+            <div class="row">
+                {% if country_1.income_group.name == 'nan' %}
+                <div class="col-sm">
+                    Income Group: None
+                </div>
+                {% else %}
+                <div class="col-sm">
+                Income Group: {{ country_1.income_group.name }}
+                </div>
+                {% endif %}
+                {% if country_1.region.name == 'nan' %}
+                <div class="col-sm">
+                    Region: None
+                </div>
+                {% else %}
+                <div class="col-sm">
+                Region: {{country_1.region.name}}
+                </div>
+                {% endif %}
+            </div>
+            <div class="row" style="margin-top: 16px">
+                <div class="col-sm">
+                Special Notes:
+                </div>
+            </div>
+            <div class="row">
+                {% if country_1.special_notes == 'nan' %}
+                <div class="col-sm">
+                There are no special notes here
+                </div>
+                {% else %}
+                <div class="col-sm">
+                {{ country_1.special_notes }}
+                </div>
+                {% endif %}
+            </div>
+
         </div>
-        <h3>Rural population (% of total population) trend:</h3>
-        
+    </div>
+    <div class="card" style="margin-top: 24px">
+        <h5 class="card-header">Rural population change chart</h5>
+    <div class="card-body">
         <table class="data-table">
             <tr>
                 <th>Year</th>
@@ -28,10 +64,12 @@
                 {% endfor %}
             </tr>
         </table>
+        <div id="container" style="margin-top: 24px"></div>
+    </div>
 
-    {% endif %}
+    </div>
     
-    <div id="container"></div>
+
 
     <script>
  
