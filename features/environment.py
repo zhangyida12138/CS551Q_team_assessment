@@ -25,6 +25,7 @@ def before_all(context):
 
     # 设置隐式等待时间
     context.browser.implicitly_wait(5)
+    context.home_page_url = "https://repairolivia-nylonsincere-8000.codio-box.uk/"
 
 def after_all(context):
     # 测试结束后关闭浏览器
