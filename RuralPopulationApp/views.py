@@ -27,7 +27,6 @@ def countries(request):
 
 def compare_countries(request):
     countries = Country.objects.all()
-
     country_1 = None
     country_2 = None
 
@@ -36,7 +35,7 @@ def compare_countries(request):
         # Retrieve the country codes from the query parameters
         country_code_1 = request.GET.get('country_code_1')
         country_code_2 = request.GET.get('country_code_2')
-
+        #check if they are the same countries
         # If both country codes are provided, fetch the corresponding country objects
         if country_code_1 and country_code_2:
             country_1 = get_object_or_404(Country, country_code=country_code_1)
@@ -81,7 +80,7 @@ def countries_in_income_group(request):
     regions = Region.objects.all()
     income_groups = IncomeGroup.objects.all()
     if request.method == 'GET':
-        income_group_id =request.GET.get('income_group_id')
+        income_group_id = request.GET.get('income_group_id')
         if income_group_id == '0':
             countries = Country.objects.all()
         else:

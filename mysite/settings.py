@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-llwlhcqtihqnd(_q3@ofbouy=!!mk#)89ror27f1kp%8k80)v&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['avalonaccent-ovalagenda-8000.codio-box.uk', 'localhost','*']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

@@ -27,9 +27,13 @@
                 {% endfor %}
         </select>
         <br>
-        <button type="submit">Compare</button>
-    </form>
 
+        <button type="submit">Compare</button>
+        {% if error_message %}
+            <div style='color: red;'>{{error_message}}</div>
+        {% endif %}
+    </form>
+    
 
     <!-- Display comparison table if both countries are provided -->
     {% if country_1 and country_2 %}
