@@ -13,7 +13,6 @@ source .venv/bin/activate # This activates the virtual environment
 ## Running the Project
 1)Navigate to the 'mysite' folder and start the server.
 ```bash
-cd mysite/
 python3 manage.py runserver 0.0.0.0:8000 # Use Ctrl+C to stop the server.
 ```
 
