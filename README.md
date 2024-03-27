@@ -24,16 +24,16 @@ Samuel Amao (Frontend)
 Roope Eemeli Paivaniemi (Frontend)
 Qiancheng Luo (Backend & Test)
 Wei Zhang (Backend & Test)
-Jia Cao (Deploy)
+Jia Cao (Deplo & Test)
 
 ### Program Structure
 The program is composed of two Django applications: mysite for site basic settings and RuralPopulationAPP for the website's detailed content, alongside static files (CSS) in the static folder, templates, manage.py, and db.sqlite3.
 
-**mysite APP**: Contains basic site settings.
+**mysite**: Contains basic site settings.
 
 **static Folder**: Houses base styles, which are referenced in other HTML files.
 
-**templates Folder**: Includes three pages where index.html serves as the template page. about.html and another about.html inherit the index.html interface, presenting the main and about pages.
+**feature**: Contains all BDD test files and test environment configuration files
 
 **RuralPopulationAPP Folder**: Details the website's content.
 
