@@ -3,29 +3,33 @@ from django.urls import reverse
 from django.db.models import Prefetch
 from urllib.parse import quote
 from django.core.exceptions import FieldError
-from .models import Country,DataEntry,Region,IncomeGroup,RegionCountries,IncomeCountries
+from .models import Country, DataEntry, Region, IncomeGroup, RegionCountries, IncomeCountries
 from django.shortcuts import render, get_object_or_404
- 
+
+
 # Create your views here.
 def countries(request):
     # Prefetch the DataEntry objects for each country to minimize database hits
     dataentry_prefetch = Prefetch('dataentry_set', queryset=DataEntry.objects.all())
 
     countries = Country.objects.select_related('region', 'income_group').all()
-    regions=Region.objects.all()
-    income_groups=IncomeGroup.objects.all()
+    regions = Region.objects.all()
+    income_groups = IncomeGroup.objects.all()
+    selected_group_id = ''
+
     # Merge the three dictionaries into one
     context = {
         'countries': countries,
         'regions': regions,
-        "income_groups": income_groups
+        "income_groups": income_groups,
+        'selected_group_id': selected_group_id
     }
     return render(request, 'RuralPopulationApp/countries.html', context)
 
 
 def compare_countries(request):
     countries = Country.objects.all()
- 
+
     country_1 = None
     country_2 = None
 
@@ -34,12 +38,11 @@ def compare_countries(request):
         # Retrieve the country codes from the query parameters
         country_code_1 = request.GET.get('country_code_1')
         country_code_2 = request.GET.get('country_code_2')
-        
+
         # If both country codes are provided, fetch the corresponding country objects
         if country_code_1 and country_code_2:
             country_1 = get_object_or_404(Country, country_code=country_code_1)
             country_2 = get_object_or_404(Country, country_code=country_code_2)
-
 
     context = {
         'countries': countries,
@@ -48,7 +51,8 @@ def compare_countries(request):
     }
 
     # Render the form and comparison data
-    return render(request, 'RuralPopulationApp/compare_countries.html' ,context)
+    return render(request, 'RuralPopulationApp/compare_countries.html', context)
+
 
 def compare_countries_in_region(request):
     region = None
@@ -67,31 +71,36 @@ def compare_countries_in_region(request):
                     countries = Country.objects.filter(id__in=country_ids)
                 except Exception as e:
                     print(e)
-                    error_message ='No Region matches the given query.'
-    
-    return render(request, 'RuralPopulationApp/compare_countries_in_region.html', {'region': region, 'countries': countries,'error_message':error_message})
+                    error_message = 'No Region matches the given query.'
 
-def compare_countries_in_income_group(request):
-    income_group_id = None
-    income_group = None
-    countries = None
-    error_message = None
+    return render(request, 'RuralPopulationApp/compare_countries_in_region.html',
+                  {'region': region, 'countries': countries, 'error_message': error_message})
 
+
+def countries_in_income_group(request):
+    regions = Region.objects.all()
+    income_groups = IncomeGroup.objects.all()
     if request.method == 'GET':
         income_group_id = request.GET.get('income_group_id')
+        if income_group_id == '':
+            countries = Country.objects.all()
+            selected_group_id = request.GET.get('select_group_id')
+            return render(request, 'RuralPopulationApp/countries.html',
+                          {'countries': countries, 'regions': regions, 'income_groups': income_groups,
+                           selected_group_id: 'selected_group_id'})
+        else:
+            try:
+                income_group = get_object_or_404(IncomeGroup, id=income_group_id)
+                country_ids = IncomeCountries.objects.filter(income_group=income_group).values_list('country_id',
+                                                                                                    flat=True)
+                countries = Country.objects.filter(id__in=country_ids)
+                selected_group_id = request.GET.get('select_group_id')
+                return render(request, 'RuralPopulationApp/countries.html',
+                              {'countries': countries, 'regions': regions, 'income_groups': income_groups,
+                               selected_group_id: 'selected_group_id'})
+            except Exception as e:
+                error_message = 'No IncomeGroup matches the given query.'
 
-        if income_group_id:
-            if not income_group_id.isdigit():
-                error_message='Please enter a number!'
-            else:
-                try:
-                    income_group = get_object_or_404(IncomeGroup, id=income_group_id)
-                    country_ids = IncomeCountries.objects.filter(income_group=income_group).values_list('country_id', flat=True)
-                    countries = Country.objects.filter(id__in=country_ids)
-                except Exception as e :
-                    error_message='No IncomeGroup matches the given query.'
-
-    return render(request, 'RuralPopulationApp/compare_countries_in_income_group.html', {'income_group': income_group, 'countries': countries,'error_message':error_message})
 
 def show(request):
     country_1 = None
@@ -100,7 +109,7 @@ def show(request):
     if request.method == 'GET':
         # Retrieve the country codes from the query parameters
         country_code_1 = request.GET.get('country_code_1')
-        
+
         # If both country codes are provided, fetch the corresponding country objects
         if country_code_1:
             country_1 = get_object_or_404(Country, country_code=country_code_1)

@@ -7,43 +7,67 @@
 {% block content %}
     <h1>List of Countries</h1>
     <br>
-    <table class="table table-striped">
+    <form method="get" action="{% url 'countries_in_income_group' %}">
+        <div class="form-row">
+            <div class="col-2">
+                <label for="inputPassword6">Income Group Name:</label>
+            </div>
+            <div class="col-4">
+                <select class="custom-select" name="income_group_id" id="income_group_id">
+                    <option value="" selected {% if selected_option == value %}selected{% endif %}>All Income Group</option>
+                    {% for option in income_groups %}
+                        <option value="{{ option.id }}"
+                                {% if selected_group_id == value %}selected{% endif %}>
+                            {{ option.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+        </div>
+    </form>
+
+    <table class="table table-striped" style="margin-top: 24px">
         <thead class="thead-dark">
-    <tr>
-        <th >Country Code</th>
-        <th >Country Name</th>
-        <th >Income Group</th>
-        <th >Region</th>
-        <th >Special Notes</th>
-        <th >operate</th>
-    </tr>
-  </thead>
+        <tr>
+            <th>Country Code</th>
+            <th>Country Name</th>
+            <th>Income Group</th>
+            <th>Region</th>
+            <th>Special Notes</th>
+            <th>operate</th>
+        </tr>
+        </thead>
         <tbody>
         {% for country in countries %}
-        <tr>
-            <td>{{ country.country_code }}</td>
-            <td>{{ country.name }}</td>
-            {% if country.income_group.name == 'nan' %}
-                <td>None</td>
-            {% else %}
-                <td>{{ country.income_group.name}}</td>
-            {% endif %}
-            {% if country.income_group.name == 'nan' %}
-                <td>None</td>
-            {% else %}
-                <td>{{country.region.name}}</td>
-            {% endif %}
-            {% if country.special_notes == 'nan' %}
-                <td>None</td>
-            {% else %}
-                <td>{{ country.special_notes }}</td>
-            {% endif %}
-            <td>
-                <a href="show/?country_code_1={{country.country_code}}" class="btn btn-outline-primary" role="button">details </a>
-            </td>
-        </tr>
+            <tr>
+                <td>{{ country.country_code }}</td>
+                <td>{{ country.name }}</td>
+                {% if country.income_group.name == 'nan' %}
+                    <td>None</td>
+                {% else %}
+                    <td>{{ country.income_group.name }}</td>
+                {% endif %}
+                {% if country.income_group.name == 'nan' %}
+                    <td>None</td>
+                {% else %}
+                    <td>{{ country.region.name }}</td>
+                {% endif %}
+                {% if country.special_notes == 'nan' %}
+                    <td>None</td>
+                {% else %}
+                    <td>{{ country.special_notes }}</td>
+                {% endif %}
+                <td>
+                    <a href="show/?country_code_1={{ country.country_code }}" class="btn btn-outline-primary"
+                       role="button">details </a>
+                </td>
+            </tr>
         {% endfor %}
-  </tbody>
+        </tbody>
     </table>
-      
+
 {% endblock %}
