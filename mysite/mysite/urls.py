@@ -19,7 +19,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.homepage),
-    path('about/', views.about),
-    path('rural/', include('RuralPopulationApp.urls'))
+    # path('', views.homepage),
+    # path('about/', views.about),
+    path('', include('RuralPopulationApp.urls'))
 ]

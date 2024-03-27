@@ -116,3 +116,9 @@ def show(request):
 
     # Render the form and comparison data
     return render(request, 'RuralPopulationApp/show.html', {'country_1': country_1})
+
+def about(request):
+    context = {
+        'content': 'content'
+    }
+    return render(request, 'RuralPopulationApp/about.html', context)
