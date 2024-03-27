@@ -1,0 +1,14 @@
+{% extends 'RuralPopulationApp/index.html' %}
+
+{% block title %}
+Error
+{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1>Oops!</h1>
+    <h2>Error {{ error_code }}: {{ error_message }}</h2>
+    <p>The requested page cannot be found.</p>
+    <a href="{% url 'countries' %}" class="btn btn-primary">Return Home</a>
+</div>
+{% endblock %}

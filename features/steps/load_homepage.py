@@ -9,9 +9,9 @@ from selenium.webdriver.support import expected_conditions as EC
 def step_impl(context):
     # Assuming the Home button can be identified by its link text
     WebDriverWait(context.browser, 10).until(
-        EC.element_to_be_clickable((By.LINK_TEXT, 'Home'))
+        EC.element_to_be_clickable((By.ID, 'Home'))
     )
-    home_button = context.browser.find_element(By.LINK_TEXT, 'Home')
+    home_button = context.browser.find_element(By.ID, 'Home')
     home_button.click()
 
 

@@ -23,3 +23,5 @@ urlpatterns = [
     # path('about/', views.about),
     path('', include('RuralPopulationApp.urls'))
 ]
+
+handler404 = views.custom_error_view
