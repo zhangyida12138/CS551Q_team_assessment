@@ -45,14 +45,30 @@
         <tbody>
             <tr>
                 <td>{{ country_1.name }}</td>
-                <td>{{ country_1.region.name }}</td>
-                <td>{{ country_1.income_group.name }}</td>
+                {% if country_1.region.name == 'nan' %}
+                        <td>None</td>
+                    {% else %}
+                        <td>{{ country1.region.name}}</td>
+                    {% endif %}
+                {% if country_1.income_group.name == 'nan' %}
+                        <td>None</td>
+                    {% else %}
+                        <td>{{ country_1.income_group.name}}</td>
+                    {% endif %}
                 <td>{{ country_1.special_notes }}</td>
             </tr>
             <tr>
                 <td>{{ country_2.name }}</td>
-                <td>{{ country_2.region.name }}</td>
-                <td>{{ country_2.income_group.name }}</td>
+                {% if country_2.region.name == 'nan' %}
+                        <td>None</td>
+                    {% else %}
+                        <td>{{ country2.region.name}}</td>
+                    {% endif %}
+                {% if country_2.income_group.name == 'nan' %}
+                        <td>None</td>
+                    {% else %}
+                        <td>{{ country_2.income_group.name}}</td>
+                    {% endif %}
                 <td>{{ country_2.special_notes }}</td>
             </tr>
         </tbody>

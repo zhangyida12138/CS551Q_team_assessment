@@ -11,7 +11,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
-os.environ["DJANGO_SETTINGS_MODULE"] = "shopping.settings"
+os.environ["DJANGO_SETTINGS_MODULE"] = "mysite.settings"
 django.setup()
 
 # Use the chrome driver specific to your version of Chrome browser and put it in ./driver directory
