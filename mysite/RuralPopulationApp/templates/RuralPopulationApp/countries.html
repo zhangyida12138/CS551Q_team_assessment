@@ -62,7 +62,7 @@
                     <td>{{ country.special_notes }}</td>
                 {% endif %}
                 <td>
-                    <a href="show/?country_code_1={{ country.country_code }}" class="btn btn-outline-primary"
+                    <a href="{% url 'show' %}?country_code_1={{ country.country_code }}" class="btn btn-outline-primary"
                        role="button">details </a>
                 </td>
             </tr>

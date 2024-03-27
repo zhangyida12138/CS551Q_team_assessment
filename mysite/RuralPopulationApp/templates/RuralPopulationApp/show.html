@@ -94,11 +94,11 @@
 
                     dataSource: [
                     {% for data_entry in country_1.dataentry_set.all %}
-                        { country: {{ data_entry.year }}, medal: {{ data_entry.value }} },
+                        { year: {{ data_entry.year }}, value: {{ data_entry.value }} },
                     {% endfor %}
                     ],
-                    xName: 'country',
-                    yName: 'medal',
+                    xName: 'year',
+                    yName: 'value',
                 }
             ],
         });

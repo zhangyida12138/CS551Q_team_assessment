@@ -46,6 +46,19 @@
                     {% else %}
                         <td>{{ country.special_notes }}</td>
                     {% endif %}
+                    <tr>
+                        <th>Year</th>
+                        {% for data_entry in country.dataentry_set.all %}
+                            <td>{{ data_entry.year }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <th>Population(%)</th>
+                        {% for data_entry in country.dataentry_set.all %}
+                            <td>{{ data_entry.value }}</td>
+                        {% endfor %}
+                    </tr>
+                </table>
                 </tr>
             {% endfor %}
         </tbody>
