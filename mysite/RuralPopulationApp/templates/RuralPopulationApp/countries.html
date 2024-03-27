@@ -14,10 +14,10 @@
             </div>
             <div class="col-4">
                 <select class="custom-select" name="income_group_id" id="income_group_id">
-                    <option value="" selected {% if selected_option == value %}selected{% endif %}>All Income Group</option>
+                    <option value='0' {% if selected_income_group_id == 0 %}selected{% endif %}>All Income Group</option>
                     {% for option in income_groups %}
                         <option value="{{ option.id }}"
-                                {% if selected_group_id == value %}selected{% endif %}>
+                                {% if selected_income_group_id == option.id %}selected{% endif %}>
                             {{ option.name }}
                         </option>
                     {% endfor %}
