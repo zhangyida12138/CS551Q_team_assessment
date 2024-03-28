@@ -33,7 +33,13 @@ The program is composed of two Django applications: mysite for site basic settin
 
 **static Folder**: Contains all the css files, which are referenced in other HTML files.
 
-**feature Folder**: Contains all BDD test files and test environment configuration files
+**features Folder**: Contains all BDD test files and test environment configuration files. If you want to run the BDD test please execute the following commands:
+* Open the file **environment.py** on the folder features, change the **context.home_page_url** into your local host.
+* Then execute the following commands in the terminal
+```bash
+behave #make sure you are now on CS551Q_team_assessment/
+```
+* You will see the BDD test.
 
 **RuralPopulationAPP Folder**: Details the website's content.
 
