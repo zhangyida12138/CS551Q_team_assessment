@@ -13,14 +13,19 @@ def step_impl(context):
 
 @when(u'the user selects an "{income_group}" group from the dropdown')
 def step_impl(context, income_group):
-    # Wait for the dropdown to be clickable and select the income group
     wait = WebDriverWait(context.browser, 10)
     dropdown = wait.until(EC.element_to_be_clickable((By.ID, 'income_group_id')))
+    dropdown.click()  # Open the dropdown
     
-    # Click the dropdown and select the income group
-    dropdown.click()
-    option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//option[text()='{income_group}']")))
+    # Print all options for debugging purposes
+    options = context.browser.find_elements(By.TAG_NAME, "option")
+    for option in options:
+        print(option.text)
+    
+    # Wait and click the specific option
+    option = wait.until(EC.element_to_be_clickable((By.XPATH, "//option[normalize-space()='Low income']")))
     option.click()
+
 
 @when(u'the user clicks the submit button')
 def step_impl(context):
