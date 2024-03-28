@@ -58,3 +58,47 @@ behave #make sure you are now on CS551Q_team_assessment/
 **The 'manage.py'** file is utilized for starting the server and includes error handling features.
 
 **The db.sqlite3** file is the database file containing the data from 'parse_data.py' and the tables from 'models.py'.
+
+
+# 安装MySQL或MariaDB的开发库:
+
+这些库包含了mysqlclient安装过程中需要的头文件和静态库。具体的安装命令取决于你使用的操作系统。
+对于Debian或Ubuntu系统，你可以使用以下命令安装MySQL的开发库：
+
+sql
+```
+sudo apt-get update
+sudo apt-get install libmysqlclient-dev
+```
+
+如果你使用的是MariaDB，相应的命令可能会有所不同，例如：
+
+sql
+```
+sudo apt-get update
+sudo apt-get install libmariadb-dev
+```
+
+对于Red Hat、Fedora或CentOS系统，命令可能如下：
+```
+sudo yum install mysql-devel
+```
+或者，对于MariaDB：
+```
+sudo yum install MariaDB-devel
+```
+设置环境变量（如果上一步没有解决问题）:
+如果即便安装了开发库之后，pkg-config仍然找不到它们，你可能需要手动设置MYSQLCLIENT_CFLAGS和MYSQLCLIENT_LDFLAGS环境变量。这两个变量应该指向你的MySQL或MariaDB开发库的头文件和库文件位置。具体如何设置取决于你的安装路径，但一般来说，命令会类似于：
+
+```
+export MYSQLCLIENT_CFLAGS=`mysql_config --cflags`
+export MYSQLCLIENT_LDFLAGS=`mysql_config --libs`
+```
+注意：在一些系统中，mysql_config工具可能随着客户端库或开发库一起安装。
+
+安装mysqlclient:
+设置好环境变量后，尝试安装mysqlclient：
+```
+pip install mysqlclient
+```
+
