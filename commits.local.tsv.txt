@@ -1,0 +1,77 @@
+12df2d18	WEI ZHANG	Thu Mar 28 01:40:19 2024	finish behaviour test
+b26ba71e	WEI ZHANG	Thu Mar 28 00:16:54 2024	wirte some test files
+929cfa82	JIA CAO	Wed Mar 27 20:57:39 2024	added more tests and modified about page structure
+b5abd44d	WEI ZHANG	Wed Mar 27 20:02:12 2024	fix the titles problem in all pages
+12f9d722	WEI ZHANG	Wed Mar 27 19:36:31 2024	add error.html
+978d9e8c	WEI ZHANG	Wed Mar 27 19:17:17 2024	add id for nav elements
+f33d9ddb	WEI ZHANG	Wed Mar 27 18:35:25 2024	edit readme
+e76cfebf	luchen-luke	Wed Mar 27 14:44:06 2024	Merge branch 'main' of https://github.com/zhangyida12138/CS551Q_team_assessment
+8c88e6d0	luchen-luke	Wed Mar 27 14:43:55 2024	Modify the details page, the table exceeds the div problem
+9add8e11	QIANCHENG LUO	Wed Mar 27 14:34:41 2024	Implement data visualization across region and income group dimensions
+fc3d0f62	WEI ZHANG	Wed Mar 27 13:47:59 2024	move the files
+8d69e47b	WEI ZHANG	Wed Mar 27 13:43:33 2024	remove the first mysite folder,and move the files to CS551Q folder
+a95aef22	QIANCHENG LUO	Wed Mar 27 13:30:31 2024	fix some bug
+9ead5ec3	WEI ZHANG	Wed Mar 27 13:19:35 2024	change nan to none
+2b63b90f	luchen-luke	Wed Mar 27 08:07:54 2024	Modify top bar
+d2698f64	luchen-luke	Wed Mar 27 08:00:03 2024	Front-end optimization countries list page and compare countries page
+e24297b8	luchen-luke	Wed Mar 27 06:37:16 2024	Reconstruct the front-end page folder structure
+39a51a45	luchen-luke	Wed Mar 27 05:23:53 2024	Merge the compare_countries page into the countries page.
+9985cbaf	WEI ZHANG	Tue Mar 26 20:59:46 2024	create feature files
+2f2d84d8	luchen-luke	Tue Mar 26 20:10:59 2024	Merge branch 'main' of https://github.com/zhangyida12138/CS551Q_team_assessment
+b0d53f26	luchen-luke	Tue Mar 26 20:10:55 2024	Reconstruct the interface layout and modify the show.html interface
+c55b0261	QIANCHENG LUO	Tue Mar 26 19:38:33 2024	create unit test
+dd04ffe2	WEI ZHANG	Tue Mar 26 17:31:14 2024	delete feature test files
+d2a152f3	WEI ZHANG	Tue Mar 26 16:48:58 2024	Update test features and add new ones for better coverage
+f58628fe	WEI ZHANG	Tue Mar 26 14:50:59 2024	fix the compare page
+2caf3ef3	WEI ZHANG	Tue Mar 26 14:07:45 2024	write readme file
+db46f5a8	WEI ZHANG	Tue Mar 26 00:25:26 2024	update error handling
+31d832b7	WEI ZHANG	Tue Mar 26 00:05:04 2024	error handling in views
+1625d340	SAMUEL AMAO	Mon Mar 25 23:00:10 2024	deleted layout page & changed title as well as some spelling checks
+6887afa2	QIANCHENG LUO	Mon Mar 25 20:18:26 2024	add .gitignore file
+d75a0967	QIANCHENG LUO	Mon Mar 25 19:22:15 2024	modify the compare_countries page
+611afac5	QIANCHENG LUO	Mon Mar 25 18:56:00 2024	modify the layout of the data
+fbd18b98	ROOPE EEMELI PAIVANIEMI	Mon Mar 25 18:05:04 2024	Working automatic charts
+cd6ae0cb	ROOPE EEMELI PAIVANIEMI	Mon Mar 25 16:14:45 2024	Working 'Details' button with country data showing
+2d7f71d5	ROOPE EEMELI PAIVANIEMI	Mon Mar 25 15:04:53 2024	Show views
+91c2db9c	WEI ZHANG	Mon Mar 25 09:43:29 2024	fix the bug
+9c894c29	luchen-luke	Sun Mar 24 15:07:40 2024	Update settings.py
+1423b0bc	luchen-luke	Sun Mar 24 06:29:38 2024	Modify the overall page style and use the bootstrap framework. Modified the countries front-end page
+1f0cd440	SAMUEL AMAO	Sat Mar 23 22:57:02 2024	updated incomegroup & region pages
+29f9dff5	SAMUEL AMAO	Sat Mar 23 22:27:00 2024	corrected the list on about page
+fb895963	SAMUEL AMAO	Sat Mar 23 21:09:04 2024	update html pages with forms to display results, updated views & urls accordingly
+ac18344e	SAMUEL AMAO	Fri Mar 22 10:49:56 2024	updated countries page to reflect app purpose
+280ed468	SAMUEL AMAO	Thu Mar 21 22:00:48 2024	commit
+ab1045d7	SAMUEL AMAO	Thu Mar 21 21:56:41 2024	commit
+6bc81691	QIANCHENG LUO	Thu Mar 21 14:07:08 2024	edit view.py and  countries.html
+7bd014f3	SAMUEL AMAO	Thu Mar 21 13:44:39 2024	changes to views and some pages
+a7b917f2	SAMUEL AMAO	Thu Mar 21 13:41:00 2024	changes to views and some pages
+5c1075cb	WEI ZHANG	Thu Mar 21 13:28:19 2024	create test floder
+dce3f6b9	WEI ZHANG	Thu Mar 21 13:23:16 2024	create test folder
+ae39f382	QIANCHENG LUO	Thu Mar 21 12:50:41 2024	Merge branch 'main' of github.com:zhangyida12138/CS551Q_team_assessment into main
+c94ab8b0	QIANCHENG LUO	Thu Mar 21 12:47:58 2024	insert data into relation tables
+612ae4bc	SAMUEL AMAO	Thu Mar 21 12:44:45 2024	added contents to aboutpage and edited the pages
+44267941	WEI ZHANG	Thu Mar 21 12:19:30 2024	change the views
+a148850e	SAMUEL AMAO	Thu Mar 21 10:58:48 2024	edited the about page with /
+ceb97c20	SAMUEL AMAO	Thu Mar 21 10:49:34 2024	edited the home path
+d503e27d	SAMUEL AMAO	Thu Mar 21 10:33:32 2024	accept resolve conflict
+266eb95a	SAMUEL AMAO	Thu Mar 21 10:30:38 2024	resolve conflict
+a7ba5091	WEI ZHANG	Thu Mar 21 09:16:50 2024	resolve conflicts
+fad375e2	SAMUEL AMAO	Thu Mar 21 01:16:20 2024	Merge branch 'main' of https://github.com/zhangyida12138/CS551Q_team_assessment into main
+7b2959d8	SAMUEL AMAO	Thu Mar 21 01:13:40 2024	modified template, urls & views
+eae4b934	WEI ZHANG	Thu Mar 21 00:58:11 2024	create urls files
+6e9aafdf	WEI ZHANG	Thu Mar 21 00:47:42 2024	finished RegionCountries and IncomeCountries
+338f469f	WEI ZHANG	Wed Mar 20 23:56:12 2024	add some commits
+a8ee45ec	SAMUEL AMAO	Wed Mar 20 22:44:22 2024	moved folders to mysite
+a483e715	SAMUEL AMAO	Wed Mar 20 22:37:24 2024	copied existing folders to mysite and deleted the RuralPopulationProject dir
+8479e56f	WEI ZHANG	Wed Mar 20 19:54:26 2024	add some commits
+9f6147f9	QIANCHENG LUO	Wed Mar 20 19:23:43 2024	delete RuarlPopilationProject
+2ebbe987	SAMUEL AMAO	Wed Mar 20 16:38:56 2024	added new template files and view file
+09e5bd2e	SAMUEL AMAO	Wed Mar 20 16:30:08 2024	Merge branch 'main' of https://github.com/zhangyida12138/CS551Q_team_assessment into main
+e27e55a0	SAMUEL AMAO	Wed Mar 20 16:15:40 2024	added static assets
+1b1e1851	SAMUEL AMAO	Wed Mar 20 16:14:45 2024	added templates
+e2202af0	QIANCHENG LUO	Tue Mar 19 22:06:49 2024	tie data to model
+ffb4aa1a	QIANCHENG LUO	Tue Mar 19 17:23:09 2024	edit project name
+03994780	QIANCHENG LUO	Tue Mar 19 14:28:11 2024	creat models
+52c03b54	QIANCHENG LUO	Tue Mar 19 14:05:43 2024	add templates folder
+0382fde1	QIANCHENG LUO	Tue Mar 19 14:02:11 2024	initial commit
+ae8283a9	zhangyida12138	Tue Mar 19 13:37:16 2024	Initial commit

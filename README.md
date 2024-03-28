@@ -27,24 +27,28 @@ Wei Zhang (Backend & Test)
 Jia Cao (Deplo & Test)
 
 ### Program Structure
-The program is composed of two Django applications: mysite for site basic settings and RuralPopulationAPP for the website's detailed content, alongside static files (CSS) in the static folder, templates, manage.py, and db.sqlite3.
+The program is composed of two Django applications: mysite for site basic settings and RuralPopulationAPP for the website's detailed content.
 
-**mysite**: Contains basic site settings.
+**mysite Folder**: Contains basic site settings.
 
-**static Folder**: Houses base styles, which are referenced in other HTML files.
+**static Folder**: Contains all the css files, which are referenced in other HTML files.
 
-**feature**: Contains all BDD test files and test environment configuration files
+**feature Folder**: Contains all BDD test files and test environment configuration files
 
 **RuralPopulationAPP Folder**: Details the website's content.
 
-* data Folder: Stores initial data.
-* models.py: Defines multiple database tables including Country, DataEntry, Region, IncomeGroup, RegionCountries, and IncomeCountries, each with an auto-incremented primary key id. Region and IncomeGroup are queried by id, and DataEntry stores data for each country from 2000 to 2023. IncomeGroup and Region have content restrictions set in the database to ensure data integrity.
-* views: Handles site requests with routes for listing all countries, comparing two countries, listing all countries in a region or income group, and displaying country details. Includes error handling to prevent display errors.
+* The 'data' Folder: Stores initial data.
+* The 'models.py': Defines multiple database tables including Country, DataEntry, Region, IncomeGroup, RegionCountries, and IncomeCountries, each with an auto-incremented primary key id. Region and IncomeGroup are queried by id, and DataEntry stores data for each country from 2000 to 2023. IncomeGroup and Region have content restrictions set in the database to ensure data integrity.
+* The 'views': Handles site requests with routes for listing all countries, comparing two countries, listing all countries in a region or income group, and displaying country details. Includes error handling to prevent display errors.
 
-* management/commands Folder: Contains parse_data.py for importing initial data into the database according to the models' structure, with error handling and data formatting.
+* The 'management'/'commands' Folder: Contains 'parse_data.py' for importing initial data into the database according to the models' structure, with error handling and data formatting.
 
-* migrations Folder: Synchronizes the model classes with the database schema.
+* 'migrations' Folder: Synchronizes the model classes with the database schema.
 
-* The templates folder within RuralPopulationAPP differs from the root templates folder by containing HTML files for different functionalities, all inheriting from the index.html interface.
+* The 'templates' folder within RuralPopulationAPP differs from the root templates folder by containing HTML files for different functionalities, all inheriting from the 'index.html' interface.
 
-* The manage.py file is utilized for starting the server and includes error handling features.
+* The 'tests' folder contains all the unitest files and test functionalities of the website.
+
+**The 'manage.py'** file is utilized for starting the server and includes error handling features.
+
+**The db.sqlite3** file is the database file containing the data from 'parse_data.py' and the tables from 'models.py'.
