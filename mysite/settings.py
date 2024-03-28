@@ -126,27 +126,27 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# MySQL
-DATABASES = {
+# # MySQL
+# DATABASES = {
 
-    'default': {
+#     'default': {
 
-        'ENGINE': 'django.db.backends.mysql', 
+#         'ENGINE': 'django.db.backends.mysql', 
 
-        'NAME': 'team_assessment', 
+#         'NAME': 'team_assessment', 
 
-        'USER': 'team',
+#         'USER': 'team',
 
-        'PASSWORD': 'Abdn@2024',
+#         'PASSWORD': 'Abdn@2024',
 
-        'HOST': '',
+#         'HOST': '',
 
-        'PORT': '3306',
-         # Unit Test DB
-        'TEST': {
-            'NAME': 'test',  # 测试过程中会生成名字为test的数据库,测试结束后Django会自动删除该数据库
-        }
+#         'PORT': '3306',
+#          # Unit Test DB
+#         'TEST': {
+#             'NAME': 'test',  #
+#         }
 
-    }
+#     }
 
-}
+# }

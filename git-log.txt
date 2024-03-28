@@ -1,0 +1,106 @@
+* eda6845a : add some error handler & add some test case
+* eca2bd98 : add some comments
+* 3dac7759 : README.md
+* e041f075 : migrate database to mysql
+* 0f5f3675 : edit the requirements.txt
+* 86d4a18e : Optimize comapre_countires_region page.
+* d5c867e5 : fix the bugs(cant show the region name)
+* 8780f985 : change nan into none
+* 7d5438bf : change readme file
+* 4315c334 : edit readme file and add commits.local.tsv.txt and requirements.txt
+* 12df2d18 : finish behaviour test
+* b26ba71e : wirte some test files
+* 929cfa82 : added more tests and modified about page structure
+* b5abd44d : fix the titles problem in all pages
+* 12f9d722 : add error.html
+* 978d9e8c : add id for nav elements
+* f33d9ddb : edit readme
+*   e76cfebf : Merge branch 'main' of https://github.com/zhangyida12138/CS551Q_team_assessment
+|\  
+| * 9add8e11 : Implement data visualization across region and income group dimensions
+* | 8c88e6d0 : Modify the details page, the table exceeds the div problem
+|/  
+* fc3d0f62 : move the files
+* 8d69e47b : remove the first mysite folder,and move the files to CS551Q folder
+* a95aef22 : fix some bug
+* 9ead5ec3 : change nan to none
+* 2b63b90f : Modify top bar
+* d2698f64 : Front-end optimization countries list page and compare countries page
+* e24297b8 : Reconstruct the front-end page folder structure
+* 39a51a45 : Merge the compare_countries page into the countries page.
+* 9985cbaf : create feature files
+*   2f2d84d8 : Merge branch 'main' of https://github.com/zhangyida12138/CS551Q_team_assessment
+|\  
+| * c55b0261 : create unit test
+| * dd04ffe2 : delete feature test files
+| * d2a152f3 : Update test features and add new ones for better coverage
+* | b0d53f26 : Reconstruct the interface layout and modify the show.html interface
+|/  
+* f58628fe : fix the compare page
+* 2caf3ef3 : write readme file
+* db46f5a8 : update error handling
+* 31d832b7 : error handling in views
+* 1625d340 : deleted layout page & changed title as well as some spelling checks
+* 6887afa2 : add .gitignore file
+* d75a0967 : modify the compare_countries page
+* 611afac5 : modify the layout of the data
+* fbd18b98 : Working automatic charts
+* cd6ae0cb : Working 'Details' button with country data showing
+* 2d7f71d5 : Show views
+* 91c2db9c : fix the bug
+* 9c894c29 : Update settings.py
+* 1423b0bc : Modify the overall page style and use the bootstrap framework. Modified the countries front-end page
+* 1f0cd440 : updated incomegroup & region pages
+* 29f9dff5 : corrected the list on about page
+* fb895963 : update html pages with forms to display results, updated views & urls accordingly
+* ac18344e : updated countries page to reflect app purpose
+*   280ed468 : commit
+|\  
+| * 6bc81691 : edit view.py and  countries.html
+* | ab1045d7 : commit
+|/  
+*   7bd014f3 : changes to views and some pages
+|\  
+| * 5c1075cb : create test floder
+| * dce3f6b9 : create test folder
+| *   ae39f382 : Merge branch 'main' of github.com:zhangyida12138/CS551Q_team_assessment into main
+| |\  
+| * | c94ab8b0 : insert data into relation tables
+* | | a7b917f2 : changes to views and some pages
+| |/  
+|/|   
+* | 612ae4bc : added contents to aboutpage and edited the pages
+|/  
+* 44267941 : change the views
+* a148850e : edited the about page with /
+* ceb97c20 : edited the home path
+*   d503e27d : accept resolve conflict
+|\  
+| * a7ba5091 : resolve conflicts
+* | 266eb95a : resolve conflict
+|/  
+*   fad375e2 : Merge branch 'main' of https://github.com/zhangyida12138/CS551Q_team_assessment into main
+|\  
+| * eae4b934 : create urls files
+| * 6e9aafdf : finished RegionCountries and IncomeCountries
+| * 338f469f : add some commits
+* | 7b2959d8 : modified template, urls & views
+|/  
+*   a8ee45ec : moved folders to mysite
+|\  
+| * 8479e56f : add some commits
+| * 9f6147f9 : delete RuarlPopilationProject
+* | a483e715 : copied existing folders to mysite and deleted the RuralPopulationProject dir
+|/  
+* 2ebbe987 : added new template files and view file
+*   09e5bd2e : Merge branch 'main' of https://github.com/zhangyida12138/CS551Q_team_assessment into main
+|\  
+| * e2202af0 : tie data to model
+| * ffb4aa1a : edit project name
+* | e27e55a0 : added static assets
+* | 1b1e1851 : added templates
+|/  
+* 03994780 : creat models
+* 52c03b54 : add templates folder
+* 0382fde1 : initial commit
+* ae8283a9 : Initial commit

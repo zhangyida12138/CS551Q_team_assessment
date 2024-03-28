@@ -88,6 +88,7 @@ def countries_in_region(request):
         'selected_region_id': region_id if 'region_id_int' in locals() else None,
         'error_message': error_message,  # Pass the error message to the template
     })
+    
 def countries_in_income_group(request):
     income_groups = IncomeGroup.objects.all()
     if request.method == 'GET':
