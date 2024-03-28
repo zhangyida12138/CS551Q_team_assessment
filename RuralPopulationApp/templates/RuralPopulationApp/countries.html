@@ -5,73 +5,88 @@
 {% endblock %}
 
 {% block content %}
+    <!-- Page Title -->
     <h1>List of Countries</h1>
     <br>
+
+    <!-- Form for selecting income group -->
     <form method="get" action="{% url 'countries_in_income_group' %}">
         <div class="form-row">
+            <!-- Label for income group selection -->
             <div class="col-2">
                 <label for="inputPassword6">Income Group Name:</label>
             </div>
+            <!-- Dropdown for selecting income group -->
             <div class="col-4">
                 <select class="custom-select" name="income_group_id" id="income_group_id">
+                    <!-- Default option for selecting all income groups -->
                     <option value='0' {% if selected_income_group_id == 0 %}selected{% endif %}>All Income Group</option>
+                    <!-- Iterate through available income groups -->
                     {% for option in income_groups %}
                         <option value="{{ option.id }}"
                                 {% if selected_income_group_id == option.id %}selected{% endif %}>
+                            <!-- Display income group name or "None" if not available -->
                             {% if option.name == 'nan' %}
                                 None
                             {% else %}
                                 {{ option.name }}
                             {% endif %}
-                    </option>
+                        </option>
                     {% endfor %}
                 </select>
             </div>
+            <!-- Submit button -->
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-
         </div>
     </form>
 
+    <!-- Table for displaying country information -->
     <table class="table table-striped" style="margin-top: 24px">
         <thead class="thead-dark">
-        <tr>
-            <th>Country Code</th>
-            <th>Country Name</th>
-            <th>Income Group</th>
-            <th>Region</th>
-            <th>Special Notes</th>
-            <th>operate</th>
-        </tr>
+            <tr>
+                <th>Country Code</th>
+                <th>Country Name</th>
+                <th>Income Group</th>
+                <th>Region</th>
+                <th>Special Notes</th>
+                <th>Operate</th>
+            </tr>
         </thead>
         <tbody>
-        {% for country in countries %}
-            <tr>
-                <td>{{ country.country_code }}</td>
-                <td>{{ country.name }}</td>
-                {% if country.income_group.name == 'nan' %}
-                    <td>None</td>
-                {% else %}
-                    <td>{{ country.income_group.name }}</td>
-                {% endif %}
-                {% if country.income_group.name == 'nan' %}
-                    <td>None</td>
-                {% else %}
-                    <td>{{ country.region.name }}</td>
-                {% endif %}
-                {% if country.special_notes == 'nan' %}
-                    <td>None</td>
-                {% else %}
-                    <td>{{ country.special_notes }}</td>
-                {% endif %}
-                <td>
-                    <a href="{% url 'show' %}?country_code_1={{ country.country_code }}" class="btn btn-outline-primary"
-                       role="button">details </a>
-                </td>
-            </tr>
-        {% endfor %}
+            <!-- Iterate through countries -->
+            {% for country in countries %}
+                <tr>
+                    <!-- Display country code -->
+                    <td>{{ country.country_code }}</td>
+                    <!-- Display country name -->
+                    <td>{{ country.name }}</td>
+                    <!-- Display income group or "None" if not available -->
+                    {% if country.income_group.name == 'nan' %}
+                        <td>None</td>
+                    {% else %}
+                        <td>{{ country.income_group.name }}</td>
+                    {% endif %}
+                    <!-- Display region or "None" if not available -->
+                    {% if country.income_group.name == 'nan' %}
+                        <td>None</td>
+                    {% else %}
+                        <td>{{ country.region.name }}</td>
+                    {% endif %}
+                    <!-- Display special notes or "None" if not available -->
+                    {% if country.special_notes == 'nan' %}
+                        <td>None</td>
+                    {% else %}
+                        <td>{{ country.special_notes }}</td>
+                    {% endif %}
+                    <!-- Button for viewing details of the country -->
+                    <td>
+                        <a href="{% url 'show' %}?country_code_1={{ country.country_code }}" class="btn btn-outline-primary"
+                           role="button">Details</a>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
-
 {% endblock %}

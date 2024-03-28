@@ -1,6 +1,7 @@
 # CS551Q_team_assessment
 This is the team assessment for the course CSS551Q at the University of Aberdeen. Our goal is to build a website for the Global Rural Population Survey System using the Django framework with Python.
 
+
 ## Installation
 1) Clone the repository to your local machine.
 2) Set up and activate the virtual environment. Navigate to the project folder and execute the following commands in the terminal:
@@ -10,6 +11,48 @@ pyenv local 3.10.7 # This sets the local version of Python to 3.10.7 (Optional)
 python3 -m venv .venv # This creates the virtual environment
 source .venv/bin/activate # This activates the virtual environment
 ```
+
+# Installing the Development Libraries for MySQL or MariaDB::
+
+These libraries include the header files and static libraries required during the installation process of mysqlclient. The specific installation commands depend on the operating system you're using. For Debian or Ubuntu systems, you can install the development libraries for MySQL using the following command:
+
+
+```sql
+sudo apt-get update
+sudo apt-get install libmysqlclient-dev
+```
+
+If you're using MariaDB, the corresponding commands might differ, for example:
+
+
+```sql
+sudo apt-get update
+sudo apt-get install libmariadb-dev
+```
+
+For Red Hat, Fedora, or CentOS systems, the commands might be as follows:
+```
+sudo yum install mysql-devel
+```
+Or, for MariaDB:
+```
+sudo yum install MariaDB-devel
+```
+Setting Environment Variables (If the previous step didn't resolve the issue):
+If, after installing the development libraries, pkg-config still cannot find them, you might need to manually set the MYSQLCLIENT_CFLAGS and MYSQLCLIENT_LDFLAGS environment variables. These variables should point to the header files and library files locations of your MySQL or MariaDB development libraries. How to set them depends on your installation path, but generally, the commands would look like:
+
+```
+export MYSQLCLIENT_CFLAGS=`mysql_config --cflags`
+export MYSQLCLIENT_LDFLAGS=`mysql_config --libs`
+```
+Note: In some systems, the mysql_config tool may be installed along with the client libraries or development libraries.
+
+Installing mysqlclient:
+After setting the environment variables, try installing mysqlclient:
+```
+pip install mysqlclient
+```
+
 ## Running the Project
 1)Navigate to the 'mysite' folder and start the server.
 ```bash
@@ -60,45 +103,4 @@ behave #make sure you are now on CS551Q_team_assessment/
 **The db.sqlite3** file is the database file containing the data from 'parse_data.py' and the tables from 'models.py'.
 
 
-# 安装MySQL或MariaDB的开发库:
-
-这些库包含了mysqlclient安装过程中需要的头文件和静态库。具体的安装命令取决于你使用的操作系统。
-对于Debian或Ubuntu系统，你可以使用以下命令安装MySQL的开发库：
-
-sql
-```
-sudo apt-get update
-sudo apt-get install libmysqlclient-dev
-```
-
-如果你使用的是MariaDB，相应的命令可能会有所不同，例如：
-
-sql
-```
-sudo apt-get update
-sudo apt-get install libmariadb-dev
-```
-
-对于Red Hat、Fedora或CentOS系统，命令可能如下：
-```
-sudo yum install mysql-devel
-```
-或者，对于MariaDB：
-```
-sudo yum install MariaDB-devel
-```
-设置环境变量（如果上一步没有解决问题）:
-如果即便安装了开发库之后，pkg-config仍然找不到它们，你可能需要手动设置MYSQLCLIENT_CFLAGS和MYSQLCLIENT_LDFLAGS环境变量。这两个变量应该指向你的MySQL或MariaDB开发库的头文件和库文件位置。具体如何设置取决于你的安装路径，但一般来说，命令会类似于：
-
-```
-export MYSQLCLIENT_CFLAGS=`mysql_config --cflags`
-export MYSQLCLIENT_LDFLAGS=`mysql_config --libs`
-```
-注意：在一些系统中，mysql_config工具可能随着客户端库或开发库一起安装。
-
-安装mysqlclient:
-设置好环境变量后，尝试安装mysqlclient：
-```
-pip install mysqlclient
-```
 

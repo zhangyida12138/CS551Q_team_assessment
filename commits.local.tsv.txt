@@ -1,3 +1,7 @@
+d5c867e5	WEI ZHANG	Thu Mar 28 02:26:52 2024	fix the bugs(cant show the region name)
+8780f985	WEI ZHANG	Thu Mar 28 02:23:50 2024	change nan into none
+7d5438bf	WEI ZHANG	Thu Mar 28 02:06:03 2024	change readme file
+4315c334	WEI ZHANG	Thu Mar 28 01:58:32 2024	edit readme file and add commits.local.tsv.txt and requirements.txt
 12df2d18	WEI ZHANG	Thu Mar 28 01:40:19 2024	finish behaviour test
 b26ba71e	WEI ZHANG	Thu Mar 28 00:16:54 2024	wirte some test files
 929cfa82	JIA CAO	Wed Mar 27 20:57:39 2024	added more tests and modified about page structure

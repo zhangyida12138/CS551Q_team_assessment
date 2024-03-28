@@ -6,107 +6,121 @@
 
 {% block content %}
     <h1>Comparison of Countries in Region</h1>
-    <!-- Form for inputting region ID -->
+
+    <!-- Form for selecting region ID -->
     <div style="display: flex; flex-direction: column; align-items: flex-start;">
-    <form method="get" action="{% url 'countries_in_region' %}">
-        <label for="region_id">chose the region:</label>
-        <select name="region_id" id="region_id">
+        <form method="get" action="{% url 'countries_in_region' %}">
+            <label for="region_id">Choose the region:</label>
+            <select name="region_id" id="region_id">
+                <!-- Default option -->
                 {% if countries == None %}
                     <option selected>Choose Region</option>
                 {% endif %}
+                <!-- Iterate through regions -->
                 {% for option in regions %}
-                <option value="{{ option.id }}"
-                                {% if selected_region_id == option.id %}selected{% endif %}>
-                            {% if option.name == 'nan' %}
-                                None
-                            {% else %}
-                                {{ option.name }}
-                            {% endif %}
-                </option>
+                    <option value="{{ option.id }}"
+                            {% if selected_region_id == option.id %}selected{% endif %}
+                    >
+                        {% if option.name == 'nan' %}
+                            None
+                        {% else %}
+                            {{ option.name }}
+                        {% endif %}
+                    </option>
                 {% endfor %}
             </select>
-        <button type="submit">Compare</button>
-    </form>
-    <details style="margin-top: 10px;">
-        <summary>Region Codes Guide (Click to expand)</summary>
-        <dl>
-            <dd>1 - Latin America & Caribbean</dd>
-            <dd>2 - No region</dd>
-            <dd>3 - South Asia</dd>
-            <dd>4 - Sub-Saharan Africa</dd>
-            <dd>5 - Europe & Central Asia</dd>
-            <dd>6 - Middle East & North Africa</dd>
-            <dd>7 - East Asia & Pacific</dd>
-            <dd>8 - North America</dd>
-        </dl>
-    </details>
-</div>
-{% if countries != None %}
-    <div id="container" style="margin-top: 24px"></div>
-    <!-- Table to display comparison results -->
-    <table class="table table-striped" style="margin-top: 24px">
-        <thead>
-            <tr>
-                <th>Region</th>
-                <th>Country</th>
-                <th>Income Group</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for country in countries %}
+            <button type="submit">Compare</button>
+        </form>
+
+        <!-- Guide for region codes -->
+        <details style="margin-top: 10px;">
+            <summary>Region Codes Guide (Click to expand)</summary>
+            <dl>
+                <dd>1 - Latin America & Caribbean</dd>
+                <dd>2 - No region</dd>
+                <dd>3 - South Asia</dd>
+                <dd>4 - Sub-Saharan Africa</dd>
+                <dd>5 - Europe & Central Asia</dd>
+                <dd>6 - Middle East & North Africa</dd>
+                <dd>7 - East Asia & Pacific</dd>
+                <dd>8 - North America</dd>
+            </dl>
+        </details>
+    </div>
+
+    <!-- Display comparison results if available -->
+    {% if countries != None %}
+        <!-- Chart container -->
+        <div id="container" style="margin-top: 24px"></div>
+        
+        <!-- Table to display comparison results -->
+        <table class="table table-striped" style="margin-top: 24px">
+            <thead>
                 <tr>
-                    {% if country.income_group.name == 'nan' %}
-                        <td>None</td>
-                    {% else %}
-                        <td>{{country.region.name}}</td>
-                    {% endif %}
-                        <td>{{ country.name }}</td>
-                    {% if country.income_group.name == 'nan' %}
-                        <td>None</td>
-                    {% else %}
-                        <td>{{ country.income_group.name}}</td>
-                    {% endif %}
+                    <th>Region</th>
+                    <th>Country</th>
+                    <th>Income Group</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endif %}
+            </thead>
+            <tbody>
+                <!-- Iterate through countries -->
+                {% for country in countries %}
+                    <tr>
+                        <!-- Display region name or "None" if not available -->
+                        {% if country.income_group.name == 'nan' %}
+                            <td>None</td>
+                        {% else %}
+                            <td>{{country.region.name}}</td>
+                        {% endif %}
+                        <!-- Display country name -->
+                        <td>{{ country.name }}</td>
+                        <!-- Display income group or "None" if not available -->
+                        {% if country.income_group.name == 'nan' %}
+                            <td>None</td>
+                        {% else %}
+                            <td>{{ country.income_group.name}}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 
-<script>
-    var chart = new ej.charts.Chart({
-        tooltip: { enable: true },
-
-        // Initializing Primary X Axis
-        primaryXAxis: {
-            title: 'Year',
-            interval: 1
-        },
-        // Initializing Primary Y Axis
-        primaryYAxis: {
-            interval: 5,
-            title: 'Rural Population (% of Total Population)'
-        },
-        // Initializing Chart Series
-        series: [
-            {% for country in countries %}
-            {
-                type: 'Line',
-                width: 4,
-                name: '{{ country.name }}',
-                dataSource: [
-                    {% for data_entry in country.dataentry_set.all %}
-                    { year: {{ data_entry.year }}, value: {{ data_entry.value }} },
-                    {% endfor %}
-                ],
-                xName: 'year',
-                yName: 'value',
-                // Generate a random color for each country
-                fill: 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',0.3)',
-                border: { width: 2, color: 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',0.7)' }
-            }{% if not forloop.last %},{% endif %}
-            {% endfor %}
-        ],
-    });
-    chart.appendTo('#container');
-</script>
+    <!-- JavaScript for rendering the chart -->
+    <script>
+        var chart = new ej.charts.Chart({
+            tooltip: { enable: true },
+            // Primary X Axis configuration
+            primaryXAxis: {
+                title: 'Year',
+                interval: 1
+            },
+            // Primary Y Axis configuration
+            primaryYAxis: {
+                interval: 5,
+                title: 'Rural Population (% of Total Population)'
+            },
+            // Chart Series configuration
+            series: [
+                {% for country in countries %}
+                {
+                    type: 'Line',
+                    width: 4,
+                    name: '{{ country.name }}',
+                    dataSource: [
+                        {% for data_entry in country.dataentry_set.all %}
+                        { year: {{ data_entry.year }}, value: {{ data_entry.value }} },
+                        {% endfor %}
+                    ],
+                    xName: 'year',
+                    yName: 'value',
+                    // Generate random colors for each country
+                    fill: 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',0.3)',
+                    border: { width: 2, color: 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',0.7)' }
+                }{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ],
+        });
+        chart.appendTo('#container');
+    </script>
 {% endblock %}
