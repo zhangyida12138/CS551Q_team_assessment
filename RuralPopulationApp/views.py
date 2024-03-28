@@ -35,7 +35,7 @@ def compare_countries(request):
         # Retrieve the country codes from the query parameters
         country_code_1 = request.GET.get('country_code_1')
         country_code_2 = request.GET.get('country_code_2')
-        #check if they are the same countries
+        # check if they are the same countries
         # If both country codes are provided, fetch the corresponding country objects
         if country_code_1 and country_code_2:
             country_1 = get_object_or_404(Country, country_code=country_code_1)
@@ -54,30 +54,27 @@ def compare_countries(request):
 
 
 def compare_countries_in_region(request):
+    regions = Region.objects.all()
     region = None
     countries = None
-    error_message = None
+    return render(request, 'RuralPopulationApp/compare_countries_in_region.html',
+                  {'regions': regions, 'region': region, 'countries': countries})
 
+
+def countries_in_region(request):
+    regions = Region.objects.all()
+    countries = None
     if request.method == 'GET':
         region_id = request.GET.get('region_id')
-        if region_id:
-            if not region_id.isdigit():
-                error_message = "Please enter a number!"
-            else:
-                try:
-                    region = get_object_or_404(Region, id=region_id)
-                    country_ids = RegionCountries.objects.filter(region=region).values_list('country_id', flat=True)
-                    countries = Country.objects.filter(id__in=country_ids)
-                except Exception as e:
-                    print(e)
-                    error_message = 'No Region matches the given query.'
+        region = get_object_or_404(Region, id=region_id)
+        country_ids = RegionCountries.objects.filter(region=region).values_list('country_id', flat=True)
+        countries = Country.objects.filter(id__in=country_ids)
 
     return render(request, 'RuralPopulationApp/compare_countries_in_region.html',
-                  {'region': region, 'countries': countries, 'error_message': error_message})
+                      {'regions': regions, 'region': region,  'countries': countries, 'selected_region_id': int(region_id)})
 
 
 def countries_in_income_group(request):
-    regions = Region.objects.all()
     income_groups = IncomeGroup.objects.all()
     if request.method == 'GET':
         income_group_id = request.GET.get('income_group_id')
@@ -90,7 +87,7 @@ def countries_in_income_group(request):
             countries = Country.objects.filter(id__in=country_ids)
 
     return render(request, 'RuralPopulationApp/countries.html',
-                  {'countries': countries, 'regions': regions, 'income_groups': income_groups,
+                  {'countries': countries, 'income_groups': income_groups,
                    'selected_income_group_id': int(income_group_id)})
 
 

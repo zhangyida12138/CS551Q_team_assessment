@@ -6,14 +6,25 @@
 
 {% block content %}
     <h1>Comparison of Countries in Region</h1>
-    {% if error_message %}
-        <div style='color: red;'>{{error_message}}</div>
-    {% endif %}
     <!-- Form for inputting region ID -->
     <div style="display: flex; flex-direction: column; align-items: flex-start;">
-    <form method="get" action="{% url 'compare_countries_in_region' %}">
-        <label for="region_id">Region ID:</label>
-        <input type="text" name="region_id" id="region_id">
+    <form method="get" action="{% url 'countries_in_region' %}">
+        <label for="region_id">chose the region:</label>
+        <select name="region_id" id="region_id">
+                {% if countries == None %}
+                    <option selected>Choose Region</option>
+                {% endif %}
+                {% for option in regions %}
+                <option value="{{ option.id }}"
+                                {% if selected_region_id == option.id %}selected{% endif %}>
+                            {% if option.name == 'nan' %}
+                                None
+                            {% else %}
+                                {{ option.name }}
+                            {% endif %}
+                </option>
+                {% endfor %}
+            </select>
         <button type="submit">Compare</button>
     </form>
     <details style="margin-top: 10px;">
@@ -30,11 +41,10 @@
         </dl>
     </details>
 </div>
-
-
+{% if countries != None %}
     <div id="container" style="margin-top: 24px"></div>
     <!-- Table to display comparison results -->
-    <table>
+    <table class="table table-striped" style="margin-top: 24px">
         <thead>
             <tr>
                 <th>Region</th>
@@ -60,7 +70,7 @@
             {% endfor %}
         </tbody>
     </table>
-
+{% endif %}
 
 <script>
     var chart = new ej.charts.Chart({
