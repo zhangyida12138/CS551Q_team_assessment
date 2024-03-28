@@ -1,6 +1,7 @@
 # CS551Q_team_assessment
 This is the team assessment for the course CSS551Q at the University of Aberdeen. Our goal is to build a website for the Global Rural Population Survey System using the Django framework with Python.
 
+We deployed the site to **vidago666.pythonanywhere.com**
 
 ## Installation
 1) Clone the repository to your local machine.
