@@ -18,9 +18,14 @@
                     {% for option in income_groups %}
                         <option value="{{ option.id }}"
                                 {% if selected_income_group_id == option.id %}selected{% endif %}>
-                            {{ option.name }}
-                        </option>
-                    {% endfor %}
+                            {% if option.name == 'nan' %}
+                                None
+                            {% else %}
+                                {{ option.name }}
+                            {% endif %}
+                    </option>
+{% endfor %}
+
                 </select>
             </div>
             <div class="col-auto">

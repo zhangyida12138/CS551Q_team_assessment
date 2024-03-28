@@ -10,13 +10,26 @@
         <div style='color: red;'>{{error_message}}</div>
     {% endif %}
     <!-- Form for inputting region ID -->
+    <div style="display: flex; flex-direction: column; align-items: flex-start;">
     <form method="get" action="{% url 'compare_countries_in_region' %}">
         <label for="region_id">Region ID:</label>
         <input type="text" name="region_id" id="region_id">
-        <br>
         <button type="submit">Compare</button>
     </form>
-
+    <details style="margin-top: 10px;">
+        <summary>Region Codes Guide (Click to expand)</summary>
+        <dl>
+            <dd>1 - Latin America & Caribbean</dd>
+            <dd>2 - No region</dd>
+            <dd>3 - South Asia</dd>
+            <dd>4 - Sub-Saharan Africa</dd>
+            <dd>5 - Europe & Central Asia</dd>
+            <dd>6 - Middle East & North Africa</dd>
+            <dd>7 - East Asia & Pacific</dd>
+            <dd>8 - North America</dd>
+        </dl>
+    </details>
+</div>
 
 
     <div id="container" style="margin-top: 24px"></div>

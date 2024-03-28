@@ -5,37 +5,35 @@ import django
 from django.conf import settings
 import os
 
-
 def before_all(context):
-    # 确保 Django 设置正确加载
+    # Ensure Django settings are correctly loaded
     os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
     django.setup()
 
-    # 初始化 WebDriver 的选项
+    # Initialize WebDriver options
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # 无头模式，不显示浏览器界面
-    chrome_options.add_argument("--no-sandbox")  # 在 Docker 或 CI 系统中运行时需要
-    chrome_options.add_argument("--disable-dev-shm-usage")  # 避免资源限制问题
-    chrome_options.add_argument("--window-size=1920,1080")  # 设置窗口大小
+    chrome_options.add_argument("--headless")  # Headless mode, browser interface won't be displayed
+    chrome_options.add_argument("--no-sandbox")  # Necessary when running in Docker or CI systems
+    chrome_options.add_argument("--disable-dev-shm-usage")  # To avoid resource constraint issues
+    chrome_options.add_argument("--window-size=1920,1080")  # Set window size
 
-    # 初始化 WebDriver
-    # 请根据您的 ChromeDriver 路径进行调整
-    # 如果 ChromeDriver 在您的 PATH 中，您可以直接使用 webdriver.Chrome(options=chrome_options)
+    # Initialize WebDriver
+    # Please adjust according to the path of your ChromeDriver
     context.browser = webdriver.Chrome(options=chrome_options)
 
-    # 设置隐式等待时间
+    # Set implicit wait time
     context.browser.implicitly_wait(5)
     context.home_page_url = "https://repairolivia-nylonsincere-8000.codio-box.uk/"
 
 def after_all(context):
-    # 测试结束后关闭浏览器
-    if hasattr(context, 'browser'):  # 检查 context 对象是否有 'browser' 属性
+    # Close the browser after the tests are finished
+    if hasattr(context, 'browser'):  # Check if the context object has a 'browser' attribute
         context.browser.quit()
 
 def before_scenario(context, scenario):
-    # 每个场景开始前可以进行的操作（如果有需要）
+    # Operations that can be performed before each scenario starts (if necessary)
     pass
 
 def after_scenario(context, scenario):
-    # 每个场景结束后可以进行的操作（如果有需要），例如清理测试数据
+    # Operations that can be performed after each scenario ends (if necessary), for example, cleaning up test data
     pass

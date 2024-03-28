@@ -59,7 +59,11 @@
                     {% else %}
                         <td>{{ country_1.income_group.name}}</td>
                     {% endif %}
-                <td>{{ country_1.special_notes }}</td>
+                {% if country_1.special_notes == 'nan' %}
+                        <td>None</td>
+                    {% else %}
+                        <td>{{ country_1.special_notes}}</td>
+                    {% endif %}
             </tr>
             <tr>
                 <td>{{ country_2.name }}</td>
@@ -73,7 +77,11 @@
                     {% else %}
                         <td>{{ country_2.income_group.name}}</td>
                     {% endif %}
-                <td>{{ country_2.special_notes }}</td>
+                {% if country_2.special_notes == 'nan' %}
+                        <td>None</td>
+                    {% else %}
+                        <td>{{ country_2.special_notes}}</td>
+                    {% endif %}
             </tr>
         </tbody>
     </table>
