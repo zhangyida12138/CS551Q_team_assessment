@@ -142,6 +142,10 @@ DATABASES = {
         'HOST': '',
 
         'PORT': '3306',
+         # Unit Test DB
+        'TEST': {
+            'NAME': 'test',  # 测试过程中会生成名字为test的数据库,测试结束后Django会自动删除该数据库
+        }
 
     }
 

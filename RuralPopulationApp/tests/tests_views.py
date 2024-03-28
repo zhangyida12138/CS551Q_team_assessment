@@ -2,11 +2,6 @@ from django.test import TestCase
 from django.urls import reverse
 from RuralPopulationApp.models import Country, Region, IncomeGroup,RegionCountries
 
-
-from django.test import TestCase
-from django.urls import reverse
-from .models import Region, IncomeGroup, Country, RegionCountries
-
 class ViewTestCase(TestCase):
     def setUp(self):
         # Setup test data
@@ -46,22 +41,37 @@ class ViewTestCase(TestCase):
 
     def test_compare_region_with_string_input(self):
         # Test the compare_countries_in_region view with string input
-        response = self.client.get(reverse('compare_countries_in_region'), {"region_id": "asdasc"}, follow=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "ERROR") # Check if NaN exception will be raised
+        response = self.client.get(reverse('countries_in_region'), {"region_id": "asdasc"}, follow=True)
+        self.assertContains(response, "Region ID must be a number.") # Check if NaN exception will be raised
 
     def test_compare_region_with_out_of_range_input(self):
         # Test the compare_countries_in_region view with out-of-range input
-        response = self.client.get(reverse('compare_countries_in_region'), {"region_id": "999"}, follow=True) # Check if out-of-range number will be accepted
-        print(response)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "No Region matches the given query.")
+        response = self.client.get(reverse('countries_in_region'), {"region_id": "999"}, follow=True) # Check if out-of-range number will be accepted
+        self.assertContains(response, "Region not found.")
 
     def about_page_test(self):
         # Test the about page
         response = self.client.get(reverse("about"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "RuralPopulationApp/about.html")
+
+    def test_show_with_valid_country_code(self):
+        """
+        The show view should return the country's details for a valid country code.
+        """
+        url = reverse('show') + '?country_code_1=ABW'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Year")
+
+    def test_show_with_invalid_country_code(self):
+        """
+        The show view should handle invalid country codes gracefully, possibly showing an error message.
+        """
+        url = reverse('show') + '?country_code_1=INVALID'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)  # Assuming you're handling errors without returning a 404.
+        self.assertContains(response, "The requested country could not be found.")  # Match your actual error message.
 
 
 
