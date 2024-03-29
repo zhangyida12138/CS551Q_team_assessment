@@ -20,7 +20,8 @@ source .venv/bin/activate # This activates the virtual environment
 pip install -r requirements.txt
 ```
 
-#DataBase:
+
+## DataBase:
 ## Installing the Development Libraries for MySQL:
 
 These libraries include the header files and static libraries required during the installation process of mysqlclient. The specific installation commands depend on the operating system you're using. For Debian or Ubuntu systems, you can install the development libraries for MySQL using the following command:
