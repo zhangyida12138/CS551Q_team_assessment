@@ -1,7 +1,7 @@
 # CS551Q_team_assessment
 This is the team assessment for the course CSS551Q at the University of Aberdeen. Our goal is to build a website for the Global Rural Population Survey System using the Django framework with Python.
 
-We deployed the site to **vidago666.pythonanywhere.com**
+We deployed the site to  <https://vidago666.pythonanywhere.com>
 
 ## Installation
 1) Clone the repository to your local machine.
@@ -11,6 +11,12 @@ cd CS551Q_team_assessment/
 pyenv local 3.10.7 # This sets the local version of Python to 3.10.7 (Optional)
 python3 -m venv .venv # This creates the virtual environment
 source .venv/bin/activate # This activates the virtual environment
+
+```
+
+3) Install through requirements.txt
+```
+pip install -r requirements.txt
 ```
 
 # Installing the Development Libraries for MySQL or MariaDB::
@@ -18,7 +24,7 @@ source .venv/bin/activate # This activates the virtual environment
 These libraries include the header files and static libraries required during the installation process of mysqlclient. The specific installation commands depend on the operating system you're using. For Debian or Ubuntu systems, you can install the development libraries for MySQL using the following command:
 
 
-```sql
+```
 sudo apt-get update
 sudo apt-get install libmysqlclient-dev
 ```
@@ -26,7 +32,7 @@ sudo apt-get install libmysqlclient-dev
 If you're using MariaDB, the corresponding commands might differ, for example:
 
 
-```sql
+```
 sudo apt-get update
 sudo apt-get install libmariadb-dev
 ```
