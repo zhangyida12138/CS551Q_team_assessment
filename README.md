@@ -14,12 +14,8 @@ source .venv/bin/activate # This activates the virtual environment
 
 ```
 
-3) Install through requirements.txt
-```
-pip install -r requirements.txt
-```
 3) Install the requirements by executing the following command in the terminal:
-``` bash
+```
 pip install -r requirements.txt
 ```
 
