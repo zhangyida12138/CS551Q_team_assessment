@@ -1,7 +1,8 @@
 # CS551Q_team_assessment
 This is the team assessment for the course CSS551Q at the University of Aberdeen. Our goal is to build a website for the Global Rural Population Survey System using the Django framework with Python.
 
-We deployed the site to  <https://vidago666.pythonanywhere.com>
+We deployed the application on PythonAnyWhere with mysql, 
+this is the site:  <https://vidago666.pythonanywhere.com>
 
 ## Installation
 1) Clone the repository to your local machine.
@@ -19,7 +20,8 @@ source .venv/bin/activate # This activates the virtual environment
 pip install -r requirements.txt
 ```
 
-# Installing the Development Libraries for MySQL or MariaDB::
+#DataBase:
+## Installing the Development Libraries for MySQL:
 
 These libraries include the header files and static libraries required during the installation process of mysqlclient. The specific installation commands depend on the operating system you're using. For Debian or Ubuntu systems, you can install the development libraries for MySQL using the following command:
 
@@ -29,22 +31,12 @@ sudo apt-get update
 sudo apt-get install libmysqlclient-dev
 ```
 
-If you're using MariaDB, the corresponding commands might differ, for example:
-
-
-```
-sudo apt-get update
-sudo apt-get install libmariadb-dev
-```
 
 For Red Hat, Fedora, or CentOS systems, the commands might be as follows:
 ```
 sudo yum install mysql-devel
 ```
-Or, for MariaDB:
-```
-sudo yum install MariaDB-devel
-```
+
 Setting Environment Variables (If the previous step didn't resolve the issue):
 If, after installing the development libraries, pkg-config still cannot find them, you might need to manually set the MYSQLCLIENT_CFLAGS and MYSQLCLIENT_LDFLAGS environment variables. These variables should point to the header files and library files locations of your MySQL or MariaDB development libraries. How to set them depends on your installation path, but generally, the commands would look like:
 
@@ -58,6 +50,52 @@ Installing mysqlclient:
 After setting the environment variables, try installing mysqlclient:
 ```
 pip install mysqlclient
+```
+
+## Setup the MySQL server
+```
+sudo apt-get update
+sudo apt-get install mysql-server
+```
+`Secure Configuration`: Run the `mysql_secure_installation` command to set the root user password, remove anonymous users, disallow root remote access, and drop the test database.
+```
+sudo mysql_secure_installation
+```
+
+
+Start mysql service
+```
+sudo systemctl start mysql
+sudo systemctl enable mysql
+```
+
+connecting to MySQL server
+```bash
+mysql -u root -p
+```
+Enter the root password you set during the `mysql_secure_installation` step to log in.
+
+create Table for this project
+```sql
+create database team_assessment;
+```
+
+Then, you need to create an account with appropriate privileges for the remote user, specifying from which hosts they can connect.
+```sql
+CREATE USER 'team'@'%' IDENTIFIED BY 'Abdn@2024';
+GRANT ALL PRIVILEGES ON *.* TO 'team'@'%';
+```
+
+## Load the data
+Create the tables though django framework
+```bash
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
+Prase the data from the excel and load it into mysql
+```bash
+python3 manage.py parse_data
 ```
 
 ## Running the Project
