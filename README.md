@@ -12,6 +12,10 @@ pyenv local 3.10.7 # This sets the local version of Python to 3.10.7 (Optional)
 python3 -m venv .venv # This creates the virtual environment
 source .venv/bin/activate # This activates the virtual environment
 ```
+3) Install the requirements by executing the following command in the terminal:
+``` bash
+pip install -r requirements.txt
+```
 
 # Installing the Development Libraries for MySQL or MariaDB::
 
